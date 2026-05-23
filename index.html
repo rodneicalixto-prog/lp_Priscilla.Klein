@@ -4,390 +4,492 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Método PREVISA | Priscilla Klein</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
---navy:#0B1628;
---navy2:#0E1E35;
---navy3:#162540;
---blue:#1A3A6B;
---blue2:#1E4D8C;
---cyan:#2E7BCC;
---cyan2:#4A9FE8;
+--black:#080808;
+--piano:#0D0D0D;
+--charcoal:#1A1A1A;
+--graphite:#2C2C2C;
+--graphite2:#3A3A3A;
+--silver:#8A8A8A;
+--silver2:#B0B0B0;
+--white:#F5F5F0;
+--cream:#EDE8DF;
 --gold:#C9A84C;
---gold2:#E4C76B;
+--gold2:#E2C97E;
 --gold3:#F0DFA0;
---white:#FFFFFF;
---off-white:#F7F8FA;
---gray:#E8EBF0;
---gray2:#B8BEC9;
---gray3:#7A8294;
---text:#1A2035;
---font-display:'Cormorant Garamond',serif;
---font-body:'DM Sans',sans-serif;
+--gold-dim:rgba(201,168,76,0.15);
+--rose:#C4707A;
+--rose2:#E8A0A8;
+--rose-dim:rgba(196,112,122,0.12);
+--font-display:'Playfair Display',serif;
+--font-body:'Jost',sans-serif;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--font-body);color:var(--text);background:var(--white);overflow-x:hidden}
+body{font-family:var(--font-body);background:var(--black);color:var(--white);overflow-x:hidden;cursor:default}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* NOISE OVERLAY */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:0.4}
 
 /* UTILITIES */
-.container{max-width:1160px;margin:0 auto;padding:0 40px}
-.gold{color:var(--gold)}
-.white{color:var(--white)}
-.btn-primary{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);font-family:var(--font-body);font-size:15px;font-weight:600;padding:16px 32px;border-radius:4px;text-decoration:none;border:none;cursor:pointer;letter-spacing:0.03em;transition:all 0.3s;white-space:nowrap}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,168,76,0.35)}
-.btn-outline{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--white);font-family:var(--font-body);font-size:15px;font-weight:500;padding:15px 32px;border-radius:4px;text-decoration:none;border:1.5px solid rgba(255,255,255,0.4);cursor:pointer;letter-spacing:0.03em;transition:all 0.3s;white-space:nowrap}
-.btn-outline:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.7)}
-.btn-dark{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--navy);font-family:var(--font-body);font-size:15px;font-weight:500;padding:15px 32px;border-radius:4px;text-decoration:none;border:1.5px solid rgba(11,22,40,0.25);cursor:pointer;letter-spacing:0.03em;transition:all 0.3s}
-.btn-dark:hover{background:var(--navy);color:var(--white)}
-.section-label{font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block}
-h1,h2,h3{font-family:var(--font-display)}
-.fade-up{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
-.fade-up.visible{opacity:1;transform:none}
+.container{max-width:1200px;margin:0 auto;padding:0 48px}
+.gold{color:var(--gold2)}
+.rose{color:var(--rose2)}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:all 0.4s}
-nav.scrolled{background:rgba(11,22,40,0.97);backdrop-filter:blur(12px);padding:14px 0;box-shadow:0 1px 0 rgba(255,255,255,0.06)}
+/* BUTTONS */
+.btn-primary{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--black);font-family:var(--font-body);font-size:13px;font-weight:600;padding:16px 36px;border-radius:0;text-decoration:none;border:none;cursor:pointer;letter-spacing:0.12em;text-transform:uppercase;transition:all 0.4s;position:relative;overflow:hidden}
+.btn-primary::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--gold2),var(--gold3));opacity:0;transition:opacity 0.3s}
+.btn-primary:hover::after{opacity:1}
+.btn-primary span{position:relative;z-index:1}
+.btn-outline{display:inline-flex;align-items:center;gap:12px;background:transparent;color:var(--white);font-family:var(--font-body);font-size:13px;font-weight:400;padding:15px 36px;border-radius:0;text-decoration:none;border:1px solid rgba(245,245,240,0.25);cursor:pointer;letter-spacing:0.12em;text-transform:uppercase;transition:all 0.3s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold2)}
+.btn-rose{display:inline-flex;align-items:center;gap:12px;background:transparent;color:var(--rose2);font-family:var(--font-body);font-size:13px;font-weight:500;padding:15px 36px;border-radius:0;text-decoration:none;border:1px solid rgba(196,112,122,0.4);cursor:pointer;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.3s}
+.btn-rose:hover{background:var(--rose-dim);border-color:var(--rose2)}
+
+/* SECTION LABELS */
+.sec-label{font-family:var(--font-body);font-size:10px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:16px}
+.sec-label::before{content:'';width:32px;height:1px;background:var(--gold)}
+.sec-label-rose{color:var(--rose2)}
+.sec-label-rose::before{background:var(--rose2)}
+
+/* GOLD LINE DIVIDER */
+.gold-line{width:60px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:28px 0}
+
+/* FADE ANIMATIONS */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.9s ease,transform 0.9s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity 0.9s ease,transform 0.9s ease}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity 0.9s ease,transform 0.9s ease}
+.reveal-right.visible{opacity:1;transform:none}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 0;transition:all 0.5s}
+nav.scrolled{background:rgba(8,8,8,0.96);backdrop-filter:blur(20px);padding:16px 0;border-bottom:1px solid rgba(201,168,76,0.08)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--white);text-decoration:none;letter-spacing:0.05em}
-.nav-logo span{color:var(--gold)}
-.nav-links{display:flex;align-items:center;gap:32px}
-.nav-links a{font-size:14px;font-weight:400;color:rgba(255,255,255,0.75);text-decoration:none;letter-spacing:0.02em;transition:color 0.2s}
-.nav-links a:hover{color:var(--white)}
-.nav-cta{font-size:13px;font-weight:600;color:var(--gold);background:transparent;border:1px solid var(--gold);padding:9px 22px;border-radius:3px;text-decoration:none;letter-spacing:0.05em;transition:all 0.2s}
-.nav-cta:hover{background:var(--gold);color:var(--navy)}
+.nav-logo{display:flex;flex-direction:column;line-height:1}
+.nav-logo-main{font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--white);letter-spacing:0.08em}
+.nav-logo-main span{color:var(--gold2)}
+.nav-logo-sub{font-size:9px;font-weight:300;letter-spacing:0.3em;color:var(--silver);text-transform:uppercase;margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:40px}
+.nav-links a{font-size:11px;font-weight:400;color:rgba(245,245,240,0.55);text-decoration:none;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold2)}
+.nav-cta{font-size:10px;font-weight:600;color:var(--gold);background:transparent;border:1px solid rgba(201,168,76,0.4);padding:10px 24px;text-decoration:none;letter-spacing:0.16em;text-transform:uppercase;transition:all 0.3s}
+.nav-cta:hover{background:var(--gold-dim);border-color:var(--gold2)}
 
-/* HERO */
-.hero{min-height:100vh;background:var(--navy);position:relative;display:flex;align-items:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;pointer-events:none}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:60px 60px;opacity:0.6}
-.hero-glow{position:absolute;top:-200px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(46,123,204,0.18) 0%,transparent 70%);border-radius:50%}
-.hero-glow2{position:absolute;bottom:-100px;left:200px;width:400px;height:400px;background:radial-gradient(circle,rgba(201,168,76,0.08) 0%,transparent 70%);border-radius:50%}
-.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);color:var(--gold2);font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:8px 16px;border-radius:100px;margin-bottom:28px}
-.hero-badge::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%}
-.hero h1{font-size:clamp(38px,4.5vw,58px);font-weight:600;line-height:1.15;color:var(--white);margin-bottom:24px;letter-spacing:-0.01em}
-.hero h1 em{color:var(--gold2);font-style:normal}
-.hero-sub{font-size:17px;font-weight:300;line-height:1.75;color:rgba(255,255,255,0.65);margin-bottom:44px;max-width:480px}
-.hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:52px}
-.hero-stats{display:flex;gap:36px}
-.stat{border-left:2px solid rgba(201,168,76,0.35);padding-left:16px}
-.stat-num{font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--white)}
-.stat-label{font-size:12px;color:rgba(255,255,255,0.45);letter-spacing:0.04em;margin-top:2px}
-.hero-visual{position:relative}
-.hero-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:16px;overflow:hidden}
-.hero-card-header{background:rgba(255,255,255,0.05);padding:16px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.07)}
-.hero-card-header span{font-size:13px;color:rgba(255,255,255,0.6);font-weight:500}
-.hero-card-dot{width:8px;height:8px;border-radius:50%;background:var(--gold)}
-.hero-card-body{padding:24px 20px}
-.metric-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
-.metric-row:last-child{border-bottom:none}
-.metric-label{font-size:13px;color:rgba(255,255,255,0.5)}
-.metric-val{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--white)}
-.metric-up{font-size:12px;color:#4ADE80;background:rgba(74,222,128,0.12);padding:3px 10px;border-radius:100px}
-.chart-bars{display:flex;align-items:flex-end;gap:6px;height:80px;margin-top:20px;padding-top:10px}
-.bar{flex:1;border-radius:3px 3px 0 0;background:rgba(46,123,204,0.35);position:relative;transition:height 0.5s ease}
-.bar.active{background:linear-gradient(to top,var(--cyan),var(--cyan2))}
-.bar.gold{background:linear-gradient(to top,var(--gold),var(--gold2))}
-.priscilla-img{position:absolute;bottom:-20px;right:-30px;width:180px;background:linear-gradient(to bottom,var(--navy2),var(--navy3));border-radius:12px;border:1px solid rgba(201,168,76,0.25);padding:16px;text-align:center}
-.priscilla-avatar{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--cyan));margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:30px;font-weight:600;color:var(--white);border:2px solid rgba(201,168,76,0.4)}
-.priscilla-name{font-size:13px;font-weight:600;color:var(--white)}
-.priscilla-role{font-size:11px;color:var(--gold2);margin-top:2px}
+/* ─── HERO ─── */
+.hero{min-height:100vh;background:var(--piano);position:relative;display:flex;align-items:center;overflow:hidden}
+.hero-bg-lines{position:absolute;inset:0;pointer-events:none}
+.hero-bg-lines::before{content:'';position:absolute;top:0;left:50%;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(201,168,76,0.06),transparent)}
+.hero-bg-lines::after{content:'';position:absolute;top:0;right:25%;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(201,168,76,0.04),transparent)}
+.hero-bg-circle{position:absolute;top:-200px;right:-100px;width:800px;height:800px;border-radius:50%;border:1px solid rgba(201,168,76,0.04);pointer-events:none}
+.hero-bg-circle2{position:absolute;top:-100px;right:0px;width:500px;height:500px;border-radius:50%;border:1px solid rgba(196,112,122,0.05);pointer-events:none}
+.hero-bg-glow{position:absolute;bottom:0;left:0;right:0;height:300px;background:linear-gradient(to top,rgba(201,168,76,0.03),transparent);pointer-events:none}
 
-/* PROBLEM */
-.problem{padding:120px 0;background:var(--off-white)}
-.problem-header{text-align:center;margin-bottom:72px}
-.problem-header h2{font-size:clamp(32px,3.5vw,48px);font-weight:600;line-height:1.2;color:var(--navy);margin-bottom:16px}
-.problem-header p{font-size:16px;color:var(--gray3);max-width:520px;margin:0 auto;line-height:1.7}
-.pain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gray)}
-.pain-item{background:var(--white);padding:32px 24px;transition:all 0.3s}
-.pain-item:hover{background:var(--navy);transform:translateY(-4px);z-index:1;position:relative}
-.pain-item:hover .pain-icon{color:var(--gold2)}
-.pain-item:hover .pain-title{color:var(--white)}
-.pain-item:hover .pain-text{color:rgba(255,255,255,0.55)}
-.pain-icon{font-size:28px;margin-bottom:16px;color:var(--gray2);transition:color 0.3s}
-.pain-title{font-size:15px;font-weight:600;color:var(--navy);margin-bottom:8px;transition:color 0.3s}
-.pain-text{font-size:13px;color:var(--gray3);line-height:1.6;transition:color 0.3s}
-.problem-callout{background:var(--navy);color:var(--white);padding:56px;margin-top:64px;border-radius:8px;text-align:center;position:relative;overflow:hidden}
-.problem-callout::before{content:'';position:absolute;top:-60px;right:-60px;width:240px;height:240px;background:radial-gradient(circle,rgba(201,168,76,0.12) 0%,transparent 70%);border-radius:50%}
-.problem-callout h3{font-size:clamp(24px,3vw,38px);font-weight:500;line-height:1.3;position:relative;z-index:1}
-.problem-callout h3 em{color:var(--gold2);font-style:normal}
+.hero-content{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr 0.9fr;gap:0;align-items:stretch;min-height:100vh}
 
-/* METHOD */
-.method{padding:120px 0;background:var(--white)}
-.method-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:80px}
-.method-header h2{font-size:clamp(32px,3.5vw,46px);font-weight:600;line-height:1.2;color:var(--navy)}
-.method-header p{font-size:16px;color:var(--gray3);line-height:1.8;margin-top:16px}
-.method-intro{font-size:15px;color:var(--gray3);line-height:1.75;padding-right:20px}
-.pillars{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.pillar{background:var(--off-white);border:1px solid var(--gray);border-radius:12px;padding:36px 32px;position:relative;overflow:hidden;transition:all 0.4s;cursor:default}
-.pillar::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
-.pillar:nth-child(2)::before{background:linear-gradient(90deg,var(--gold),var(--gold2))}
-.pillar:nth-child(3)::before{background:linear-gradient(90deg,var(--cyan),#7DD3FC)}
-.pillar:nth-child(4)::before{background:linear-gradient(90deg,#8B5CF6,var(--cyan))}
-.pillar:hover{border-color:var(--blue2);transform:translateY(-4px);box-shadow:0 20px 40px rgba(11,22,40,0.1)}
-.pillar-num{font-family:var(--font-display);font-size:52px;font-weight:600;color:rgba(11,22,40,0.06);line-height:1;margin-bottom:12px}
-.pillar-title{font-size:18px;font-weight:600;color:var(--navy);margin-bottom:16px}
-.pillar-tags{display:flex;flex-wrap:wrap;gap:8px}
-.tag{font-size:12px;color:var(--blue2);background:rgba(30,77,140,0.08);padding:5px 12px;border-radius:100px;font-weight:500}
+/* HERO LEFT */
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:120px 64px 80px 0;border-right:1px solid rgba(201,168,76,0.08)}
+.hero-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:36px}
+.hero-eyebrow-line{width:48px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.hero-eyebrow-text{font-size:10px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold)}
+.hero h1{font-family:var(--font-display);font-size:clamp(42px,4.5vw,64px);font-weight:600;line-height:1.1;color:var(--white);margin-bottom:12px;letter-spacing:-0.01em}
+.hero h1 em{color:var(--gold2);font-style:italic}
+.hero-tagline{font-family:var(--font-display);font-size:clamp(16px,1.8vw,22px);font-weight:400;font-style:italic;color:var(--rose2);margin-bottom:32px;opacity:0.9}
+.hero-desc{font-size:15px;font-weight:300;line-height:1.85;color:rgba(245,245,240,0.55);margin-bottom:52px;max-width:480px}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:60px}
+.hero-social-proof{display:flex;align-items:center;gap:28px;padding-top:32px;border-top:1px solid rgba(245,245,240,0.06)}
+.proof-item{text-align:center}
+.proof-num{font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--white);line-height:1}
+.proof-num span{color:var(--gold2);font-size:18px}
+.proof-label{font-size:10px;font-weight:300;letter-spacing:0.12em;color:var(--silver);text-transform:uppercase;margin-top:4px}
+.proof-sep{width:1px;height:40px;background:rgba(245,245,240,0.08)}
 
-/* FOR WHOM */
-.forwhom{padding:120px 0;background:var(--navy)}
-.forwhom-header{text-align:center;margin-bottom:64px}
-.forwhom-header h2{font-size:clamp(30px,3.5vw,44px);font-weight:600;color:var(--white);margin-bottom:12px}
-.forwhom-header p{font-size:16px;color:rgba(255,255,255,0.5);max-width:480px;margin:0 auto}
-.who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.who-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:32px 28px;transition:all 0.3s}
-.who-card:hover{background:rgba(255,255,255,0.07);border-color:rgba(201,168,76,0.35);transform:translateY(-4px)}
-.who-icon{width:44px;height:44px;border-radius:8px;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-size:20px;color:var(--gold2)}
-.who-title{font-size:16px;font-weight:600;color:var(--white);margin-bottom:8px}
-.who-text{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6}
+/* HERO RIGHT — PHOTO */
+.hero-right{position:relative;overflow:hidden}
+.hero-photo-wrap{position:absolute;inset:0;display:flex;align-items:flex-end}
+.hero-photo-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--graphite) 0%,var(--charcoal) 50%,var(--piano) 100%)}
+.hero-photo-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}
+.photo-frame{width:260px;height:340px;border:1px solid rgba(201,168,76,0.2);position:relative;display:flex;align-items:center;justify-content:center}
+.photo-frame::before{content:'';position:absolute;top:-8px;left:-8px;right:8px;bottom:8px;border:1px solid rgba(201,168,76,0.08)}
+.photo-frame::after{content:'';position:absolute;top:8px;left:8px;right:-8px;bottom:-8px;border:1px solid rgba(196,112,122,0.08)}
+.photo-initials{font-family:var(--font-display);font-size:72px;font-weight:600;color:rgba(201,168,76,0.15);letter-spacing:0.05em}
+.photo-upload-hint{font-size:11px;font-weight:300;letter-spacing:0.2em;color:rgba(245,245,240,0.2);text-transform:uppercase;text-align:center}
+.hero-photo-overlay{position:absolute;inset:0;background:linear-gradient(to right,var(--piano) 0%,transparent 30%,transparent 60%,rgba(8,8,8,0.3) 100%)}
+.hero-photo-bottom{position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(to top,var(--piano),transparent)}
+.hero-name-card{position:absolute;bottom:48px;left:40px;right:40px}
+.hero-name-card-inner{background:rgba(13,13,13,0.85);border:1px solid rgba(201,168,76,0.15);backdrop-filter:blur(12px);padding:24px 28px;display:flex;align-items:center;justify-content:space-between}
+.hnc-left h3{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--white);margin-bottom:4px}
+.hnc-left p{font-size:11px;font-weight:300;letter-spacing:0.16em;color:var(--gold2);text-transform:uppercase}
+.hnc-right{text-align:right}
+.hnc-badge{font-size:10px;font-weight:500;letter-spacing:0.14em;color:var(--rose2);background:var(--rose-dim);border:1px solid rgba(196,112,122,0.2);padding:6px 14px;text-transform:uppercase}
 
-/* TRANSFORMATION */
-.transformation{padding:120px 0;background:var(--off-white)}
-.transformation-header{text-align:center;margin-bottom:72px}
-.transformation-header h2{font-size:clamp(30px,3.5vw,44px);font-weight:600;color:var(--navy)}
-.before-after{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;border-radius:16px;overflow:hidden;box-shadow:0 40px 80px rgba(11,22,40,0.12)}
-.before-col,.after-col{padding:52px 44px}
-.before-col{background:linear-gradient(145deg,#1a1a2e,#16213e)}
-.after-col{background:linear-gradient(145deg,var(--navy),var(--blue))}
-.divider-col{background:linear-gradient(to bottom,var(--gold),var(--gold2));width:2px;position:relative;display:flex;align-items:center;justify-content:center}
-.divider-badge{background:white;color:var(--navy);font-size:11px;font-weight:700;letter-spacing:0.1em;padding:8px 14px;border-radius:100px;writing-mode:vertical-rl;text-transform:uppercase;white-space:nowrap}
-.ba-label{font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:28px;display:block}
-.before-col .ba-label{color:rgba(255,255,255,0.3)}
-.after-col .ba-label{color:var(--gold2)}
-.ba-list{list-style:none;display:flex;flex-direction:column;gap:14px}
-.ba-list li{display:flex;align-items:flex-start;gap:12px;font-size:14px;line-height:1.5}
-.before-col .ba-list li{color:rgba(255,255,255,0.55)}
-.after-col .ba-list li{color:rgba(255,255,255,0.85)}
-.ba-dot{width:18px;height:18px;border-radius:50%;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:11px}
-.before-col .ba-dot{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.3)}
-.after-col .ba-dot{background:rgba(74,222,128,0.2);color:#4ADE80}
+/* ─── ABOUT / AUTHORITY ─── */
+.about{padding:140px 0;background:var(--piano);position:relative}
+.about-inner{display:grid;grid-template-columns:0.85fr 1.15fr;gap:80px;align-items:center}
+.about-photo-col{position:relative}
+.about-photo-frame{position:relative;aspect-ratio:3/4;background:var(--charcoal);border:1px solid rgba(201,168,76,0.12);overflow:hidden}
+.about-photo-frame::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--rose),var(--gold))}
+.about-photo-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;background:linear-gradient(160deg,var(--graphite),var(--charcoal),var(--piano))}
+.about-photo-monogram{font-family:var(--font-display);font-size:96px;font-weight:600;color:rgba(201,168,76,0.1);line-height:1}
+.about-photo-hint{font-size:10px;letter-spacing:0.22em;color:rgba(245,245,240,0.15);text-transform:uppercase}
+.about-photo-tag{position:absolute;bottom:-1px;left:-1px;right:-1px;background:linear-gradient(to right,rgba(13,13,13,0.95),rgba(13,13,13,0.7));border:1px solid rgba(201,168,76,0.15);padding:20px 24px;backdrop-filter:blur(8px)}
+.apt-name{font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--white);margin-bottom:3px}
+.apt-title{font-size:10px;font-weight:300;letter-spacing:0.2em;color:var(--gold2);text-transform:uppercase}
+.about-float-badge{position:absolute;top:40px;right:-20px;background:var(--charcoal);border:1px solid rgba(201,168,76,0.2);padding:16px 20px;text-align:center}
+.afb-num{font-family:var(--font-display);font-size:32px;font-weight:600;color:var(--gold2)}
+.afb-label{font-size:9px;letter-spacing:0.18em;color:var(--silver);text-transform:uppercase;margin-top:2px}
+.about-text .sec-label{margin-bottom:24px}
+.about-text h2{font-family:var(--font-display);font-size:clamp(32px,3vw,48px);font-weight:600;color:var(--white);line-height:1.15;margin-bottom:28px}
+.about-text h2 em{color:var(--gold2);font-style:italic}
+.about-text p{font-size:15px;font-weight:300;line-height:1.9;color:rgba(245,245,240,0.55);margin-bottom:20px}
+.about-qualities{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+.quality-item{padding:20px;border:1px solid rgba(245,245,240,0.06);border-left:2px solid var(--gold);transition:all 0.3s}
+.quality-item:hover{background:rgba(201,168,76,0.04);border-left-color:var(--gold2)}
+.qi-title{font-size:13px;font-weight:500;color:var(--white);margin-bottom:6px;letter-spacing:0.04em}
+.qi-text{font-size:12px;font-weight:300;color:var(--silver);line-height:1.6}
 
-/* AUTHORITY */
-.authority{padding:120px 0;background:var(--white)}
-.authority-inner{display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:center}
-.authority-visual{position:relative}
-.authority-card{background:var(--navy);border-radius:20px;padding:48px;position:relative;overflow:hidden}
-.authority-card::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(46,123,204,0.25) 0%,transparent 70%);border-radius:50%}
-.authority-avatar-lg{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--cyan));display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:40px;font-weight:600;color:var(--white);border:3px solid rgba(201,168,76,0.5);margin-bottom:24px;position:relative;z-index:1}
-.authority-card h3{font-family:var(--font-display);font-size:26px;font-weight:600;color:var(--white);position:relative;z-index:1;margin-bottom:4px}
-.authority-card .role{font-size:13px;color:var(--gold2);letter-spacing:0.06em;margin-bottom:24px;position:relative;z-index:1}
-.authority-card p{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.8;position:relative;z-index:1}
-.authority-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;position:relative;z-index:1}
-.authority-badge{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.7);font-size:12px;padding:6px 14px;border-radius:100px}
-.authority-text h2{font-size:clamp(30px,3vw,42px);font-weight:600;color:var(--navy);line-height:1.25;margin-bottom:24px}
-.authority-text p{font-size:15px;color:var(--gray3);line-height:1.8;margin-bottom:20px}
-.authority-points{list-style:none;display:flex;flex-direction:column;gap:16px;margin-top:32px}
-.authority-points li{display:flex;align-items:flex-start;gap:14px;font-size:14px;color:var(--gray3);line-height:1.6}
-.ap-icon{width:32px;height:32px;border-radius:6px;background:rgba(30,77,140,0.1);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--blue2);flex-shrink:0}
+/* ─── PROBLEM ─── */
+.problem{padding:140px 0;background:var(--charcoal);position:relative;overflow:hidden}
+.problem-bg-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--font-display);font-size:280px;font-weight:700;color:rgba(255,255,255,0.015);white-space:nowrap;pointer-events:none;letter-spacing:-0.05em}
+.problem-header{text-align:center;margin-bottom:80px}
+.problem-header h2{font-family:var(--font-display);font-size:clamp(32px,3.5vw,52px);font-weight:600;color:var(--white);margin-bottom:16px;line-height:1.15}
+.problem-header p{font-size:15px;font-weight:300;color:var(--silver);max-width:480px;margin:0 auto;line-height:1.7}
+.pain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(245,245,240,0.04)}
+.pain-item{background:var(--charcoal);padding:36px 28px;border-top:2px solid transparent;transition:all 0.35s;cursor:default}
+.pain-item:hover{background:var(--graphite);border-top-color:var(--gold)}
+.pain-item:nth-child(3n+2):hover{border-top-color:var(--rose)}
+.pain-ico{font-size:28px;margin-bottom:18px;display:block}
+.pain-t{font-family:var(--font-display);font-size:16px;font-weight:500;color:var(--white);margin-bottom:10px}
+.pain-d{font-size:13px;font-weight:300;color:var(--silver);line-height:1.65}
+.callout-block{margin-top:64px;text-align:center;padding:64px;border:1px solid rgba(201,168,76,0.12);position:relative}
+.callout-block::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.callout-block::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.callout-block h3{font-family:var(--font-display);font-size:clamp(22px,2.5vw,36px);font-weight:500;color:var(--white);font-style:italic;line-height:1.4}
+.callout-block h3 em{color:var(--gold2);font-style:normal}
 
-/* LEARN */
-.learn{padding:120px 0;background:var(--navy)}
-.learn-header{text-align:center;margin-bottom:72px}
-.learn-header h2{font-size:clamp(30px,3.5vw,44px);font-weight:600;color:var(--white);margin-bottom:12px}
-.learn-header p{font-size:16px;color:rgba(255,255,255,0.45)}
-.learn-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:rgba(255,255,255,0.05)}
-.learn-item{background:var(--navy);padding:28px 32px;display:flex;align-items:flex-start;gap:16px;transition:background 0.2s}
-.learn-item:hover{background:rgba(255,255,255,0.04)}
-.learn-num{font-family:var(--font-display);font-size:36px;font-weight:600;color:rgba(201,168,76,0.2);line-height:1;flex-shrink:0;min-width:44px}
-.learn-text{font-size:14px;color:rgba(255,255,255,0.65);line-height:1.6;padding-top:8px}
-.learn-text strong{display:block;font-size:15px;color:rgba(255,255,255,0.9);font-weight:500;margin-bottom:4px}
+/* ─── METHOD ─── */
+.method{padding:140px 0;background:var(--piano)}
+.method-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:80px}
+.method-header h2{font-family:var(--font-display);font-size:clamp(32px,3vw,48px);font-weight:600;color:var(--white);line-height:1.15}
+.method-header h2 em{color:var(--gold2);font-style:italic}
+.method-header-right p{font-size:15px;font-weight:300;color:rgba(245,245,240,0.5);line-height:1.85}
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(245,245,240,0.04)}
+.pillar{background:var(--piano);padding:40px 28px;position:relative;overflow:hidden;transition:all 0.4s}
+.pillar-top-line{position:absolute;top:0;left:0;right:0;height:2px}
+.p1 .pillar-top-line{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.p2 .pillar-top-line{background:linear-gradient(90deg,var(--rose),var(--rose2))}
+.p3 .pillar-top-line{background:linear-gradient(90deg,var(--gold2),var(--silver2))}
+.p4 .pillar-top-line{background:linear-gradient(90deg,var(--rose2),var(--gold))}
+.pillar:hover{background:var(--charcoal)}
+.pil-num{font-family:var(--font-display);font-size:64px;font-weight:700;color:rgba(245,245,240,0.03);line-height:1;margin-bottom:8px}
+.pil-t{font-family:var(--font-display);font-size:17px;font-weight:500;color:var(--white);margin-bottom:20px;line-height:1.3}
+.pil-tags{display:flex;flex-direction:column;gap:8px}
+.tag{font-size:11px;font-weight:300;color:var(--silver);padding:6px 0;border-bottom:1px solid rgba(245,245,240,0.04);letter-spacing:0.04em;display:flex;align-items:center;gap:8px}
+.tag::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.p2 .tag::before{background:var(--rose)}
 
-/* TESTIMONIALS */
-.testimonials{padding:120px 0;background:var(--off-white)}
-.testimonials-header{text-align:center;margin-bottom:64px}
-.testimonials-header h2{font-size:clamp(30px,3.5vw,44px);font-weight:600;color:var(--navy)}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.testi-card{background:var(--white);border:1px solid var(--gray);border-radius:16px;padding:36px 32px;position:relative;transition:all 0.3s}
-.testi-card:hover{border-color:rgba(30,77,140,0.25);box-shadow:0 20px 40px rgba(11,22,40,0.08);transform:translateY(-4px)}
-.testi-stars{display:flex;gap:4px;margin-bottom:20px}
-.star{color:var(--gold);font-size:16px}
-.testi-quote{font-size:15px;color:var(--gray3);line-height:1.75;margin-bottom:28px;font-style:italic}
-.testi-quote::before{content:'"';font-family:var(--font-display);font-size:52px;color:var(--gold3);line-height:0.5;display:block;margin-bottom:16px}
-.testi-author{display:flex;align-items:center;gap:12px;border-top:1px solid var(--gray);padding-top:20px}
-.testi-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--cyan));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:var(--white);flex-shrink:0}
-.testi-name{font-size:14px;font-weight:600;color:var(--navy)}
-.testi-role{font-size:12px;color:var(--gray2)}
-.testi-badge{font-size:11px;color:var(--gold2);background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.25);padding:3px 10px;border-radius:100px;margin-top:4px;display:inline-block}
-.results-bar{background:var(--white);border:1px solid var(--gray);border-radius:16px;padding:36px 48px;margin-top:32px;display:flex;justify-content:space-around;align-items:center}
-.result-item{text-align:center}
-.result-num{font-family:var(--font-display);font-size:48px;font-weight:600;color:var(--navy)}
-.result-num span{color:var(--gold)}
-.result-label{font-size:13px;color:var(--gray3);margin-top:4px}
+/* ─── FOR WHOM ─── */
+.forwhom{padding:140px 0;background:var(--charcoal)}
+.forwhom-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:72px}
+.forwhom-header h2{font-family:var(--font-display);font-size:clamp(32px,3vw,48px);font-weight:600;color:var(--white);line-height:1.15}
+.forwhom-header h2 em{color:var(--rose2);font-style:italic}
+.forwhom-header p{font-size:15px;font-weight:300;color:var(--silver);line-height:1.8}
+.who-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(245,245,240,0.04)}
+.who-card{background:var(--charcoal);padding:40px 32px;transition:all 0.35s;border-bottom:2px solid transparent;cursor:default}
+.who-card:hover{background:var(--graphite);border-bottom-color:var(--rose)}
+.who-card:nth-child(even):hover{border-bottom-color:var(--gold)}
+.who-num{font-family:var(--font-display);font-size:48px;font-weight:700;color:rgba(245,245,240,0.04);line-height:1;margin-bottom:16px}
+.who-t{font-family:var(--font-display);font-size:18px;font-weight:500;color:var(--white);margin-bottom:10px}
+.who-d{font-size:13px;font-weight:300;color:var(--silver);line-height:1.65}
+.who-line{width:32px;height:1px;background:var(--gold);margin-top:20px}
+.who-card:nth-child(even) .who-line{background:var(--rose)}
 
-/* FAQ */
-.faq{padding:120px 0;background:var(--white)}
-.faq-header{text-align:center;margin-bottom:64px}
-.faq-header h2{font-size:clamp(28px,3vw,40px);font-weight:600;color:var(--navy)}
-.faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:2px}
-.faq-item{border:1px solid var(--gray);border-radius:8px;overflow:hidden;margin-bottom:8px}
-.faq-q{width:100%;background:none;border:none;padding:22px 28px;text-align:left;font-family:var(--font-body);font-size:15px;font-weight:500;color:var(--navy);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;transition:background 0.2s}
-.faq-q:hover{background:var(--off-white)}
-.faq-q.open{background:var(--navy);color:var(--white)}
-.faq-arrow{font-size:18px;transition:transform 0.3s;flex-shrink:0}
+/* ─── TRANSFORMATION ─── */
+.transform{padding:140px 0;background:var(--piano)}
+.transform-header{text-align:center;margin-bottom:80px}
+.transform-header h2{font-family:var(--font-display);font-size:clamp(30px,3vw,48px);font-weight:600;color:var(--white);line-height:1.2}
+.transform-header h2 em{color:var(--gold2);font-style:italic}
+.ba-wrap{display:grid;grid-template-columns:1fr 80px 1fr;align-items:stretch}
+.ba-before{background:var(--charcoal);padding:56px 48px;border:1px solid rgba(245,245,240,0.05)}
+.ba-center{display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(to bottom,var(--gold),var(--rose));position:relative}
+.ba-center-text{writing-mode:vertical-rl;font-size:9px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--black);white-space:nowrap}
+.ba-after{background:var(--graphite);padding:56px 48px;border:1px solid rgba(201,168,76,0.1)}
+.ba-label{font-size:9px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:12px}
+.ba-before .ba-label{color:rgba(245,245,240,0.25)}
+.ba-after .ba-label{color:var(--gold2)}
+.ba-label::after{content:'';flex:1;height:1px;background:currentColor;opacity:0.2}
+.ba-list{list-style:none;display:flex;flex-direction:column;gap:16px}
+.ba-list li{display:flex;align-items:flex-start;gap:14px;font-size:14px;font-weight:300;line-height:1.5}
+.ba-before .ba-list li{color:rgba(245,245,240,0.4)}
+.ba-after .ba-list li{color:rgba(245,245,240,0.85)}
+.ba-x{width:20px;height:20px;border:1px solid rgba(245,245,240,0.12);display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(245,245,240,0.2);flex-shrink:0;margin-top:1px}
+.ba-ck{width:20px;height:20px;border:1px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--gold2);flex-shrink:0;margin-top:1px}
+
+/* ─── LEARN ─── */
+.learn{padding:140px 0;background:var(--charcoal)}
+.learn-header{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:80px}
+.learn-header h2{font-family:var(--font-display);font-size:clamp(30px,3vw,48px);font-weight:600;color:var(--white);line-height:1.15}
+.learn-header h2 em{color:var(--gold2);font-style:italic}
+.learn-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(245,245,240,0.04)}
+.learn-item{background:var(--charcoal);padding:32px 36px;display:flex;gap:24px;align-items:flex-start;transition:background 0.3s;border-left:2px solid transparent}
+.learn-item:hover{background:var(--graphite);border-left-color:var(--gold)}
+.learn-item:nth-child(even):hover{border-left-color:var(--rose)}
+.learn-n{font-family:var(--font-display);font-size:40px;font-weight:700;color:rgba(245,245,240,0.04);line-height:1;flex-shrink:0;min-width:48px}
+.learn-body strong{display:block;font-size:15px;font-weight:500;color:var(--white);margin-bottom:6px;letter-spacing:0.02em}
+.learn-body p{font-size:13px;font-weight:300;color:var(--silver);line-height:1.65}
+
+/* ─── TESTIMONIALS ─── */
+.testi{padding:140px 0;background:var(--piano);position:relative;overflow:hidden}
+.testi-bg{position:absolute;bottom:-100px;right:-100px;width:500px;height:500px;border-radius:50%;border:1px solid rgba(201,168,76,0.04);pointer-events:none}
+.testi-header{text-align:center;margin-bottom:80px}
+.testi-header h2{font-family:var(--font-display);font-size:clamp(30px,3vw,48px);font-weight:600;color:var(--white)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(245,245,240,0.04);margin-bottom:1px}
+.tc{background:var(--piano);padding:48px 36px;border-top:1px solid rgba(245,245,240,0.05);transition:all 0.35s;cursor:default}
+.tc:hover{background:var(--charcoal)}
+.tc-quote-mark{font-family:var(--font-display);font-size:72px;color:rgba(201,168,76,0.12);line-height:0.6;display:block;margin-bottom:28px}
+.tc-stars{display:flex;gap:3px;margin-bottom:20px}
+.tc-stars span{color:var(--gold);font-size:13px}
+.tc-text{font-family:var(--font-display);font-size:15px;font-style:italic;color:rgba(245,245,240,0.65);line-height:1.75;margin-bottom:32px}
+.tc-auth{display:flex;align-items:center;gap:14px;border-top:1px solid rgba(245,245,240,0.06);padding-top:24px}
+.tc-av{width:44px;height:44px;border:1px solid rgba(201,168,76,0.2);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--gold2);flex-shrink:0}
+.tc-name{font-size:13px;font-weight:500;color:var(--white);margin-bottom:2px}
+.tc-role{font-size:11px;font-weight:300;color:var(--silver);margin-bottom:5px}
+.tc-badge{font-size:9px;font-weight:600;letter-spacing:0.12em;color:var(--gold2);background:var(--gold-dim);border:1px solid rgba(201,168,76,0.2);padding:3px 10px;text-transform:uppercase}
+.results-strip{background:var(--charcoal);border:1px solid rgba(201,168,76,0.08);padding:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.results-strip::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),var(--rose),transparent)}
+.res-item{text-align:center;border-right:1px solid rgba(245,245,240,0.06);padding:0 24px}
+.res-item:last-child{border-right:none}
+.res-n{font-family:var(--font-display);font-size:48px;font-weight:600;color:var(--white);line-height:1}
+.res-n span{color:var(--gold2);font-size:32px}
+.res-l{font-size:10px;font-weight:300;letter-spacing:0.14em;color:var(--silver);text-transform:uppercase;margin-top:8px}
+
+/* ─── FAQ ─── */
+.faq{padding:140px 0;background:var(--charcoal)}
+.faq-inner{display:grid;grid-template-columns:1fr 1.5fr;gap:80px;align-items:start}
+.faq-left h2{font-family:var(--font-display);font-size:clamp(30px,3vw,48px);font-weight:600;color:var(--white);line-height:1.15;margin-bottom:24px}
+.faq-left h2 em{color:var(--gold2);font-style:italic}
+.faq-left p{font-size:14px;font-weight:300;color:var(--silver);line-height:1.8}
+.faq-list{display:flex;flex-direction:column;gap:1px;background:rgba(245,245,240,0.04)}
+.faq-item{background:var(--charcoal)}
+.faq-q{width:100%;background:none;border:none;padding:24px 28px;text-align:left;font-family:var(--font-body);font-size:14px;font-weight:400;color:var(--white);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;letter-spacing:0.02em;transition:all 0.2s;border-left:2px solid transparent}
+.faq-q:hover{background:rgba(245,245,240,0.02);border-left-color:var(--gold)}
+.faq-q.open{background:var(--graphite);border-left-color:var(--gold);color:var(--gold2)}
+.faq-arrow{font-size:20px;transition:transform 0.3s;color:var(--gold);flex-shrink:0;line-height:1}
 .faq-q.open .faq-arrow{transform:rotate(45deg)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s}
-.faq-a.open{max-height:300px;padding:0 28px 22px}
-.faq-a p{font-size:14px;color:var(--gray3);line-height:1.75}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.faq-a.open{max-height:300px}
+.faq-a p{padding:0 28px 24px;font-size:13px;font-weight:300;color:var(--silver);line-height:1.8}
 
-/* CTA FINAL */
-.cta-final{padding:120px 0;background:var(--navy);position:relative;overflow:hidden;text-align:center}
-.cta-final::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:500px;background:radial-gradient(circle,rgba(46,123,204,0.15) 0%,transparent 70%);pointer-events:none}
-.cta-final h2{font-size:clamp(32px,4vw,52px);font-weight:600;color:var(--white);margin-bottom:16px;position:relative;z-index:1}
-.cta-final h2 em{color:var(--gold2);font-style:normal}
-.cta-final p{font-size:17px;color:rgba(255,255,255,0.55);max-width:560px;margin:0 auto 48px;line-height:1.7;position:relative;z-index:1}
-.cta-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;position:relative;z-index:1}
-.trust-row{display:flex;justify-content:center;gap:40px;margin-top:52px;flex-wrap:wrap;position:relative;z-index:1}
-.trust-item{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.4)}
-.trust-dot{width:6px;height:6px;background:var(--gold);border-radius:50%}
+/* ─── CTA FINAL ─── */
+.cta-final{padding:160px 0;background:var(--piano);text-align:center;position:relative;overflow:hidden}
+.cta-bg-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;border:1px solid rgba(201,168,76,0.05);pointer-events:none}
+.cta-bg-ring2{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;border-radius:50%;border:1px solid rgba(196,112,122,0.03);pointer-events:none}
+.cta-final .sec-label{justify-content:center;margin-bottom:28px}
+.cta-final h2{font-family:var(--font-display);font-size:clamp(36px,4.5vw,64px);font-weight:600;color:var(--white);line-height:1.1;margin-bottom:20px;position:relative;z-index:1}
+.cta-final h2 em{color:var(--gold2);font-style:italic}
+.cta-final p{font-size:16px;font-weight:300;color:rgba(245,245,240,0.45);max-width:540px;margin:0 auto 56px;line-height:1.8;position:relative;z-index:1}
+.cta-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;position:relative;z-index:1;margin-bottom:52px}
+.cta-trust{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;position:relative;z-index:1}
+.trust-i{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:300;letter-spacing:0.1em;color:rgba(245,245,240,0.3);text-transform:uppercase}
+.trust-dot{width:4px;height:4px;background:var(--gold);border-radius:50%}
 
-/* FOOTER */
-footer{background:#07111F;padding:48px 0 32px}
-.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,0.06)}
-.footer-logo{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--white);letter-spacing:0.05em}
-.footer-logo span{color:var(--gold)}
-.footer-links{display:flex;gap:32px}
-.footer-links a{font-size:13px;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s}
-.footer-links a:hover{color:rgba(255,255,255,0.7)}
-.footer-social{display:flex;gap:12px}
-.social-btn{width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);font-size:16px;text-decoration:none;transition:all 0.2s}
-.social-btn:hover{background:rgba(201,168,76,0.15);border-color:rgba(201,168,76,0.35);color:var(--gold2)}
-.footer-bottom{padding-top:28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.footer-copy{font-size:12px;color:rgba(255,255,255,0.2)}
-.footer-tagline{font-family:var(--font-display);font-size:14px;color:rgba(201,168,76,0.5);font-style:italic}
+/* ─── FOOTER ─── */
+footer{background:#050505;padding:56px 0 32px}
+.foot-top{display:grid;grid-template-columns:1fr auto auto;gap:60px;align-items:start;padding-bottom:48px;border-bottom:1px solid rgba(245,245,240,0.04)}
+.foot-brand h3{font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--white);letter-spacing:0.08em;margin-bottom:4px}
+.foot-brand h3 span{color:var(--gold2)}
+.foot-brand-sub{font-size:10px;font-weight:300;letter-spacing:0.22em;color:var(--silver);text-transform:uppercase;margin-bottom:20px}
+.foot-brand p{font-family:var(--font-display);font-size:14px;font-style:italic;color:rgba(245,245,240,0.25);line-height:1.7;max-width:300px}
+.foot-nav h4{font-size:10px;font-weight:600;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:20px}
+.foot-nav ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.foot-nav a{font-size:13px;font-weight:300;color:rgba(245,245,240,0.4);text-decoration:none;transition:color 0.2s;letter-spacing:0.04em}
+.foot-nav a:hover{color:var(--gold2)}
+.foot-social h4{font-size:10px;font-weight:600;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:20px}
+.foot-socials{display:flex;flex-direction:column;gap:12px}
+.soc-link{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:300;color:rgba(245,245,240,0.4);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s}
+.soc-link:hover{color:var(--gold2)}
+.soc-ico{width:32px;height:32px;border:1px solid rgba(245,245,240,0.08);display:flex;align-items:center;justify-content:center;font-size:14px;transition:border-color 0.2s}
+.soc-link:hover .soc-ico{border-color:rgba(201,168,76,0.3)}
+.foot-bottom{padding-top:32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.foot-copy{font-size:11px;font-weight:300;color:rgba(245,245,240,0.15);letter-spacing:0.06em}
+.foot-tagline{font-family:var(--font-display);font-size:13px;font-style:italic;color:rgba(201,168,76,0.3)}
 
-/* WHATSAPP FLOAT */
-.wa-float{position:fixed;bottom:32px;right:32px;z-index:200;background:linear-gradient(135deg,#25D366,#128C7E);color:white;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;text-decoration:none;box-shadow:0 8px 24px rgba(37,211,102,0.4);transition:all 0.3s}
-.wa-float:hover{transform:scale(1.1);box-shadow:0 12px 32px rgba(37,211,102,0.5)}
-.wa-pulse{position:absolute;width:100%;height:100%;border-radius:50%;background:rgba(37,211,102,0.4);animation:pulse 2s infinite}
-@keyframes pulse{0%{transform:scale(1);opacity:1}70%{transform:scale(1.4);opacity:0}100%{transform:scale(1);opacity:0}}
+/* WA FLOAT */
+.wa-float{position:fixed;bottom:36px;right:36px;z-index:200;display:flex;align-items:center;gap:12px;background:#111;border:1px solid rgba(37,211,102,0.3);color:var(--white);font-size:12px;font-weight:400;letter-spacing:0.1em;text-decoration:none;padding:14px 20px;transition:all 0.3s;text-transform:uppercase}
+.wa-float:hover{background:#1a1a1a;border-color:rgba(37,211,102,0.6)}
+.wa-dot{width:8px;height:8px;border-radius:50%;background:#25D366;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
 
 /* MOBILE */
-@media(max-width:900px){
+@media(max-width:1024px){
 .hero-content{grid-template-columns:1fr}
-.priscilla-img{display:none}
+.hero-right{display:none}
+.about-inner{grid-template-columns:1fr}
 .method-header{grid-template-columns:1fr}
-.pillars{grid-template-columns:1fr}
-.authority-inner{grid-template-columns:1fr}
-.before-after{grid-template-columns:1fr;display:flex;flex-direction:column}
-.divider-col{width:100%;height:2px;writing-mode:unset;padding:0 20px;display:flex;justify-content:center}
-.divider-badge{writing-mode:unset}
+.pillars{grid-template-columns:1fr 1fr}
+.forwhom-header{grid-template-columns:1fr}
+.learn-header{grid-template-columns:1fr}
+.ba-wrap{grid-template-columns:1fr;display:block}
+.ba-center{display:none}
+.ba-after{border-top:2px solid var(--gold)}
 .testi-grid{grid-template-columns:1fr}
-.learn-grid{grid-template-columns:1fr}
-.who-grid{grid-template-columns:1fr 1fr}
-.pain-grid{grid-template-columns:1fr 1fr}
+.results-strip{grid-template-columns:1fr 1fr}
+.faq-inner{grid-template-columns:1fr}
+.foot-top{grid-template-columns:1fr}
 .nav-links{display:none}
-.hero-btns{flex-direction:column}
-.results-bar{flex-direction:column;gap:32px}
-.container{padding:0 24px}
+.container{padding:0 28px}
 }
-@media(max-width:600px){
-.who-grid{grid-template-columns:1fr}
-.pain-grid{grid-template-columns:1fr}
+@media(max-width:768px){
+.pain-grid{grid-template-columns:1fr 1fr}
+.who-grid{grid-template-columns:1fr 1fr}
+.pillars{grid-template-columns:1fr}
+.learn-grid{grid-template-columns:1fr}
 .cta-btns{flex-direction:column;align-items:center}
-.footer-inner{flex-direction:column;text-align:center}
-.footer-bottom{flex-direction:column;text-align:center}
+.results-strip{grid-template-columns:1fr 1fr;gap:32px;border:none;padding:32px 0}
+.res-item{border-right:none}
 }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav id="navbar">
+<nav id="nav">
   <div class="container">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">PREVISA<span>.</span></a>
+      <a href="#" class="nav-logo" style="text-decoration:none">
+        <div class="nav-logo-main">PREVISA<span>.</span></div>
+        <div class="nav-logo-sub">Priscilla Klein</div>
+      </a>
       <div class="nav-links">
         <a href="#metodo">O Método</a>
         <a href="#para-quem">Para Quem</a>
-        <a href="#autoridade">Priscilla Klein</a>
+        <a href="#priscilla">Priscilla Klein</a>
         <a href="#faq">FAQ</a>
       </div>
-      <a href="https://wa.me/5511999999999" class="nav-cta">Falar no WhatsApp</a>
+      <a href="https://wa.me/5511999999999" class="nav-cta">Diagnóstico Gratuito</a>
     </div>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg">
-    <div class="hero-grid"></div>
-    <div class="hero-glow"></div>
-    <div class="hero-glow2"></div>
-  </div>
-  <div class="container" style="padding-top:80px;padding-bottom:80px">
+  <div class="hero-bg-lines"></div>
+  <div class="hero-bg-circle"></div>
+  <div class="hero-bg-circle2"></div>
+  <div class="hero-bg-glow"></div>
+  <div class="container" style="width:100%;max-width:100%;padding:0">
     <div class="hero-content">
-      <div class="fade-up">
-        <div class="hero-badge">Método PREVISA — Gestão Estratégica</div>
-        <h1>Sua clínica não precisa mais viver meses bons e <em>meses ruins.</em></h1>
-        <p class="hero-sub">O Método PREVISA ajuda donos de clínicas de estética, biomédicos, dentistas e fisioterapeutas a construírem um faturamento previsível e crescente através da organização comercial e processos claros de crescimento.</p>
-        <div class="hero-btns">
-          <a href="#diagnostico" class="btn-primary">→ Quero Meu Diagnóstico</a>
-          <a href="https://wa.me/5511999999999" class="btn-outline">💬 Falar no WhatsApp</a>
+      <div class="hero-left reveal-left" style="padding-left:max(48px,calc((100vw - 1200px)/2 + 48px))">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-line"></div>
+          <div class="hero-eyebrow-text">Método PREVISA — Gestão para Clínicas Premium</div>
         </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <div class="stat-num">300+</div>
-            <div class="stat-label">Clínicas atendidas</div>
+        <h1>Sua clínica merece<br>crescer com<br><em>previsibilidade.</em></h1>
+        <div class="hero-tagline">Estrutura que transforma. Método que escala.</div>
+        <div class="gold-line"></div>
+        <p class="hero-desc">O Método PREVISA ajuda donos de clínicas de estética, biomédicos, dentistas e fisioterapeutas a construírem um faturamento previsível e crescente — com processos claros, equipe alinhada e estratégia de crescimento real.</p>
+        <div class="hero-btns">
+          <a href="https://wa.me/5511999999999" class="btn-primary"><span>→ Solicitar Diagnóstico</span></a>
+          <a href="https://wa.me/5511999999999" class="btn-outline">Falar no WhatsApp</a>
+        </div>
+        <div class="hero-social-proof">
+          <div class="proof-item">
+            <div class="proof-num">300<span>+</span></div>
+            <div class="proof-label">Clínicas atendidas</div>
           </div>
-          <div class="stat">
-            <div class="stat-num">4.8×</div>
-            <div class="stat-label">Crescimento médio</div>
+          <div class="proof-sep"></div>
+          <div class="proof-item">
+            <div class="proof-num">4.8<span>×</span></div>
+            <div class="proof-label">Crescimento médio</div>
           </div>
-          <div class="stat">
-            <div class="stat-num">90%</div>
-            <div class="stat-label">Aumento de recorrência</div>
+          <div class="proof-sep"></div>
+          <div class="proof-item">
+            <div class="proof-num">90<span>%</span></div>
+            <div class="proof-label">Aumento recorrência</div>
           </div>
         </div>
       </div>
-      <div class="hero-visual fade-up" style="transition-delay:0.2s">
-        <div class="hero-card">
-          <div class="hero-card-header">
-            <div class="hero-card-dot"></div>
-            <span>Dashboard Financeiro — Clínica Modelo</span>
+
+      <!-- PHOTO COLUMN -->
+      <div class="hero-right">
+        <div class="hero-photo-wrap">
+          <div class="hero-photo-bg"></div>
+          <div class="hero-photo-placeholder">
+            <div class="photo-frame">
+              <div class="photo-initials">PK</div>
+            </div>
+            <div class="photo-upload-hint">Inserir foto da especialista</div>
           </div>
-          <div class="hero-card-body">
-            <div class="metric-row">
-              <span class="metric-label">Faturamento Mensal</span>
-              <div style="display:flex;align-items:center;gap:10px">
-                <span class="metric-val">R$ 87.400</span>
-                <span class="metric-up">▲ +34%</span>
+          <div class="hero-photo-overlay"></div>
+          <div class="hero-photo-bottom"></div>
+          <div class="hero-name-card">
+            <div class="hero-name-card-inner">
+              <div class="hnc-left">
+                <h3>Priscilla Klein</h3>
+                <p>Criadora do Método PREVISA</p>
               </div>
-            </div>
-            <div class="metric-row">
-              <span class="metric-label">Taxa de Retorno</span>
-              <div style="display:flex;align-items:center;gap:10px">
-                <span class="metric-val">78%</span>
-                <span class="metric-up">▲ +22%</span>
+              <div class="hnc-right">
+                <div class="hnc-badge">Especialista Premium</div>
               </div>
-            </div>
-            <div class="metric-row">
-              <span class="metric-label">Conversão de Leads</span>
-              <div style="display:flex;align-items:center;gap:10px">
-                <span class="metric-val">64%</span>
-                <span class="metric-up">▲ +18%</span>
-              </div>
-            </div>
-            <div class="chart-bars" id="heroChart">
-              <div class="bar" style="height:35%"></div>
-              <div class="bar" style="height:45%"></div>
-              <div class="bar" style="height:40%"></div>
-              <div class="bar active" style="height:55%"></div>
-              <div class="bar active" style="height:62%"></div>
-              <div class="bar active" style="height:70%"></div>
-              <div class="bar gold" style="height:90%"></div>
-            </div>
-            <div style="display:flex;justify-content:space-between;margin-top:6px">
-              <span style="font-size:11px;color:rgba(255,255,255,0.25)">Antes PREVISA</span>
-              <span style="font-size:11px;color:rgba(201,168,76,0.6)">Após 6 meses →</span>
             </div>
           </div>
         </div>
-        <div class="priscilla-img">
-          <div class="priscilla-avatar">PK</div>
-          <div class="priscilla-name">Priscilla Klein</div>
-          <div class="priscilla-role">Criadora do PREVISA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / PRISCILLA -->
+<section class="about" id="priscilla">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-photo-col reveal-left">
+        <div class="about-photo-frame">
+          <div class="about-photo-inner">
+            <div class="about-photo-monogram">PK</div>
+            <div class="about-photo-hint">→ Inserir foto aqui</div>
+          </div>
+          <div class="about-photo-tag">
+            <div class="apt-name">Priscilla Klein</div>
+            <div class="apt-title">Especialista em Gestão Estratégica para Clínicas</div>
+          </div>
+        </div>
+        <div class="about-float-badge">
+          <div class="afb-num">300<span style="font-size:18px;color:var(--gold)">+</span></div>
+          <div class="afb-label">Clínicas transformadas</div>
+        </div>
+      </div>
+      <div class="about-text reveal-right">
+        <div class="sec-label">Sobre Priscilla Klein</div>
+        <h2>A especialista que entende a <em>realidade</em> da sua clínica</h2>
+        <div class="gold-line"></div>
+        <p>Priscilla Klein não chegou ao PREVISA pela teoria. Sua trajetória foi construída dentro das grandes operações de estética do Brasil — onde aprendeu, na prática, o que realmente funciona para crescer com consistência.</p>
+        <p>Com visão comercial, financeira e operacional, ela desenvolveu um método que respeita a realidade de cada clínica: seus recursos, seu momento e seus desafios únicos.</p>
+        <div class="about-qualities">
+          <div class="quality-item">
+            <div class="qi-title">Visão Estratégica</div>
+            <div class="qi-text">Experiência em grandes operações com foco em crescimento sustentável</div>
+          </div>
+          <div class="quality-item">
+            <div class="qi-title">Acompanhamento Próximo</div>
+            <div class="qi-text">Suporte personalizado adaptado à realidade de cada clínica</div>
+          </div>
+          <div class="quality-item">
+            <div class="qi-title">Método Aplicado</div>
+            <div class="qi-text">Implementação prática com resultados mensuráveis desde o primeiro mês</div>
+          </div>
+          <div class="quality-item">
+            <div class="qi-title">Visão Comercial</div>
+            <div class="qi-text">Combinação única de marketing inteligente com gestão eficiente</div>
+          </div>
         </div>
       </div>
     </div>
@@ -396,56 +498,57 @@ footer{background:#07111F;padding:48px 0 32px}
 
 <!-- PROBLEM -->
 <section class="problem">
+  <div class="problem-bg-text">PREVISA</div>
   <div class="container">
-    <div class="problem-header fade-up">
-      <span class="section-label">A Realidade das Clínicas</span>
-      <h2>Você reconhece alguma dessas situações?</h2>
+    <div class="problem-header reveal">
+      <div class="sec-label sec-label-rose" style="justify-content:center">A Realidade das Clínicas</div>
+      <h2>Você reconhece<br>alguma dessas situações?</h2>
       <p>Antes do PREVISA, a maioria das clínicas que atendemos vivia exatamente assim</p>
     </div>
-    <div class="pain-grid fade-up">
+    <div class="pain-grid reveal">
       <div class="pain-item">
-        <div class="pain-icon">📉</div>
-        <div class="pain-title">Faturamento imprevisível</div>
-        <div class="pain-text">Meses excelentes seguidos de meses fracos, sem saber o motivo</div>
+        <span class="pain-ico">📉</span>
+        <div class="pain-t">Faturamento imprevisível</div>
+        <div class="pain-d">Meses excelentes seguidos de meses fracos, sem entender o motivo</div>
       </div>
       <div class="pain-item">
-        <div class="pain-icon">📢</div>
-        <div class="pain-title">Dependência de indicação</div>
-        <div class="pain-text">Sem um funil ativo de aquisição, tudo depende de boca a boca</div>
+        <span class="pain-ico">📢</span>
+        <div class="pain-t">Dependência de indicação</div>
+        <div class="pain-d">Sem um funil ativo de aquisição, tudo depende do boca a boca</div>
       </div>
       <div class="pain-item">
-        <div class="pain-icon">🔄</div>
-        <div class="pain-title">Clientes que não retornam</div>
-        <div class="pain-text">Baixa recorrência mesmo com atendimento de qualidade</div>
+        <span class="pain-ico">🔄</span>
+        <div class="pain-t">Clientes que não retornam</div>
+        <div class="pain-d">Baixa recorrência mesmo com atendimento de qualidade reconhecida</div>
       </div>
       <div class="pain-item">
-        <div class="pain-icon">🏗️</div>
-        <div class="pain-title">Sem processos definidos</div>
-        <div class="pain-text">Operação travada no improviso, impossível de delegar</div>
+        <span class="pain-ico">🏗️</span>
+        <div class="pain-t">Sem processos definidos</div>
+        <div class="pain-d">Operação travada no improviso, impossível de crescer ou delegar</div>
       </div>
       <div class="pain-item">
-        <div class="pain-icon">📊</div>
-        <div class="pain-title">Baixa conversão</div>
-        <div class="pain-text">Muitos leads, poucos agendamentos, menos ainda em clientes fiéis</div>
+        <span class="pain-ico">📊</span>
+        <div class="pain-t">Baixa conversão de leads</div>
+        <div class="pain-d">Muitos contatos, poucos agendamentos, menos ainda clientes fiéis</div>
       </div>
       <div class="pain-item">
-        <div class="pain-icon">🎯</div>
-        <div class="pain-title">Marketing sem resultado</div>
-        <div class="pain-text">Agência consumindo budget sem entregar retorno mensurável</div>
+        <span class="pain-ico">🎯</span>
+        <div class="pain-t">Marketing sem retorno</div>
+        <div class="pain-d">Agência consumindo orçamento sem entregar ROI mensurável</div>
       </div>
       <div class="pain-item">
-        <div class="pain-icon">👥</div>
-        <div class="pain-title">Equipe desalinhada</div>
-        <div class="pain-text">Sem padrão de atendimento, cada colaborador age de forma diferente</div>
+        <span class="pain-ico">👥</span>
+        <div class="pain-t">Equipe desalinhada</div>
+        <div class="pain-d">Sem padrão de atendimento, cada colaborador age de forma diferente</div>
       </div>
       <div class="pain-item">
-        <div class="pain-icon">😓</div>
-        <div class="pain-title">Trabalhar muito, crescer pouco</div>
-        <div class="pain-text">Sensação constante de esforço máximo com crescimento mínimo</div>
+        <span class="pain-ico">😓</span>
+        <div class="pain-t">Muito esforço, pouco crescimento</div>
+        <div class="pain-d">Sensação constante de trabalhar ao máximo e crescer muito pouco</div>
       </div>
     </div>
-    <div class="problem-callout fade-up">
-      <h3>"O problema não é falta de esforço.<br><em>É falta de estrutura."</em></h3>
+    <div class="callout-block reveal">
+      <h3>"O problema não é falta de esforço.<br>É falta de <em>estrutura."</em></h3>
     </div>
   </div>
 </section>
@@ -453,58 +556,62 @@ footer{background:#07111F;padding:48px 0 32px}
 <!-- METHOD -->
 <section class="method" id="metodo">
   <div class="container">
-    <div class="method-header fade-up">
+    <div class="method-header reveal">
       <div>
-        <span class="section-label">Método PREVISA</span>
-        <h2>Crescimento sustentável construído sobre 4 pilares estratégicos</h2>
+        <div class="sec-label">O Método</div>
+        <h2>PREVISA — <em>Crescimento</em><br>em 4 pilares estratégicos</h2>
       </div>
-      <div class="method-intro">
+      <div class="method-header-right">
         <p>O PREVISA não é um curso. É um método estruturado de implementação, aplicado diretamente na realidade da sua clínica, com acompanhamento próximo e resultados mensuráveis desde o primeiro mês.</p>
-        <p style="margin-top:16px">Desenvolvido a partir de centenas de implementações em clínicas de estética, o método combina diagnóstico financeiro, estruturação de processos e implementação comercial em um sistema de crescimento previsível.</p>
       </div>
     </div>
-    <div class="pillars fade-up">
-      <div class="pillar">
-        <div class="pillar-num">01</div>
-        <div class="pillar-title">Diagnóstico e Planejamento</div>
-        <div class="pillar-tags">
-          <span class="tag">Análise financeira</span>
-          <span class="tag">Gargalos comerciais</span>
-          <span class="tag">Posicionamento</span>
-          <span class="tag">Metas</span>
-          <span class="tag">Plano estratégico</span>
+    <div class="pillars reveal">
+      <div class="pillar p1">
+        <div class="pillar-top-line"></div>
+        <div class="pil-num">01</div>
+        <div class="pil-t">Diagnóstico e Planejamento</div>
+        <div class="pil-tags">
+          <div class="tag">Análise financeira completa</div>
+          <div class="tag">Mapeamento de gargalos</div>
+          <div class="tag">Posicionamento estratégico</div>
+          <div class="tag">Definição de metas</div>
+          <div class="tag">Plano de ação personalizado</div>
         </div>
       </div>
-      <div class="pillar">
-        <div class="pillar-num">02</div>
-        <div class="pillar-title">Estruturação dos Processos</div>
-        <div class="pillar-tags">
-          <span class="tag">Padronização</span>
-          <span class="tag">Atendimento</span>
-          <span class="tag">Conversão</span>
-          <span class="tag">Gestão</span>
-          <span class="tag">Operação</span>
+      <div class="pillar p2">
+        <div class="pillar-top-line"></div>
+        <div class="pil-num">02</div>
+        <div class="pil-t">Estruturação dos Processos</div>
+        <div class="pil-tags">
+          <div class="tag">Padronização de atendimento</div>
+          <div class="tag">Processo de conversão</div>
+          <div class="tag">Gestão operacional</div>
+          <div class="tag">Protocolos e scripts</div>
+          <div class="tag">Treinamento de equipe</div>
         </div>
       </div>
-      <div class="pillar">
-        <div class="pillar-num">03</div>
-        <div class="pillar-title">Implementação Comercial e Marketing</div>
-        <div class="pillar-tags">
-          <span class="tag">Recorrência</span>
-          <span class="tag">Funil de vendas</span>
-          <span class="tag">Tráfego pago</span>
-          <span class="tag">Métricas</span>
-          <span class="tag">Alinhamento com agência</span>
+      <div class="pillar p3">
+        <div class="pillar-top-line"></div>
+        <div class="pil-num">03</div>
+        <div class="pil-t">Implementação Comercial</div>
+        <div class="pil-tags">
+          <div class="tag">Estratégia de recorrência</div>
+          <div class="tag">Funil de vendas ativo</div>
+          <div class="tag">Marketing e tráfego pago</div>
+          <div class="tag">Métricas e KPIs</div>
+          <div class="tag">Alinhamento com agência</div>
         </div>
       </div>
-      <div class="pillar">
-        <div class="pillar-num">04</div>
-        <div class="pillar-title">Otimização e Escala</div>
-        <div class="pillar-tags">
-          <span class="tag">Crescimento previsível</span>
-          <span class="tag">Delegação</span>
-          <span class="tag">Indicadores</span>
-          <span class="tag">Expansão sustentável</span>
+      <div class="pillar p4">
+        <div class="pillar-top-line"></div>
+        <div class="pil-num">04</div>
+        <div class="pil-t">Otimização e Escala</div>
+        <div class="pil-tags">
+          <div class="tag">Crescimento previsível</div>
+          <div class="tag">Estrutura de delegação</div>
+          <div class="tag">Análise de indicadores</div>
+          <div class="tag">Gestão inteligente</div>
+          <div class="tag">Expansão sustentável</div>
         </div>
       </div>
     </div>
@@ -514,125 +621,89 @@ footer{background:#07111F;padding:48px 0 32px}
 <!-- FOR WHOM -->
 <section class="forwhom" id="para-quem">
   <div class="container">
-    <div class="forwhom-header fade-up">
-      <span class="section-label">Para Quem é o PREVISA</span>
-      <h2>Este método foi desenvolvido para você se:</h2>
-      <p>Profissionais da estética que querem transformar sua prática em um negócio lucrativo e previsível</p>
+    <div class="forwhom-header reveal">
+      <div>
+        <div class="sec-label sec-label-rose">Para Quem é o PREVISA</div>
+        <h2>Desenvolvido para<br>quem busca <em>excelência</em></h2>
+      </div>
+      <div>
+        <p>Profissionais da estética que desejam transformar sua prática em um negócio lucrativo, previsível e de alto padrão — com gestão profissional e crescimento consistente.</p>
+      </div>
     </div>
-    <div class="who-grid fade-up">
+    <div class="who-grid reveal">
       <div class="who-card">
-        <div class="who-icon">🏥</div>
-        <div class="who-title">Dono de Clínica de Estética</div>
-        <div class="who-text">Que fatura até R$ 50k/mês e está estagnado sem saber como crescer de forma consistente</div>
+        <div class="who-num">01</div>
+        <div class="who-t">Dono de Clínica de Estética</div>
+        <div class="who-d">Que fatura até R$ 50k/mês, está estagnado e não sabe o próximo passo para crescer consistentemente</div>
+        <div class="who-line"></div>
       </div>
       <div class="who-card">
-        <div class="who-icon">🔬</div>
-        <div class="who-title">Biomédico</div>
-        <div class="who-text">Que tem excelência técnica mas não sabe como transformar conhecimento em negócio lucrativo</div>
+        <div class="who-num">02</div>
+        <div class="who-t">Biomédico</div>
+        <div class="who-d">Que tem excelência técnica mas precisa transformar conhecimento em negócio estruturado e lucrativo</div>
+        <div class="who-line"></div>
       </div>
       <div class="who-card">
-        <div class="who-icon">⚕️</div>
-        <div class="who-title">Dentista da Estética</div>
-        <div class="who-text">Que deseja estruturar um comercial previsível e deixar de depender apenas de indicações</div>
+        <div class="who-num">03</div>
+        <div class="who-t">Dentista da Estética</div>
+        <div class="who-d">Que deseja construir um comercial previsível e deixar de depender apenas de indicações para crescer</div>
+        <div class="who-line"></div>
       </div>
       <div class="who-card">
-        <div class="who-icon">💪</div>
-        <div class="who-title">Fisioterapeuta da Estética</div>
-        <div class="who-text">Que quer profissionalizar a gestão da clínica e aumentar a recorrência de pacientes</div>
+        <div class="who-num">04</div>
+        <div class="who-t">Fisioterapeuta da Estética</div>
+        <div class="who-d">Que quer profissionalizar a gestão da clínica, aumentar recorrência e organizar a operação</div>
+        <div class="who-line"></div>
       </div>
       <div class="who-card">
-        <div class="who-icon">🏢</div>
-        <div class="who-title">Ex-Franqueado</div>
-        <div class="who-text">Que tem operação própria mas precisa de suporte estratégico para crescer de forma autônoma</div>
+        <div class="who-num">05</div>
+        <div class="who-t">Ex-Franqueado</div>
+        <div class="who-d">Que opera de forma autônoma e precisa de suporte estratégico para escalar sem a rede</div>
+        <div class="who-line"></div>
       </div>
       <div class="who-card">
-        <div class="who-icon">🎓</div>
-        <div class="who-title">Especialista em Formação</div>
-        <div class="who-text">Que quer aprender gestão empresarial e estruturar uma clínica lucrativa desde o início</div>
+        <div class="who-num">06</div>
+        <div class="who-t">Especialista em Crescimento</div>
+        <div class="who-d">Que quer aprender gestão empresarial e estruturar uma clínica de alto padrão desde o início</div>
+        <div class="who-line"></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- TRANSFORMATION -->
-<section class="transformation">
+<section class="transform">
   <div class="container">
-    <div class="transformation-header fade-up">
-      <span class="section-label">A Transformação</span>
-      <h2>Transforme sua clínica em uma operação previsível, organizada e lucrativa.</h2>
+    <div class="transform-header reveal">
+      <div class="sec-label" style="justify-content:center">A Transformação</div>
+      <h2>De clínica no <em>improviso</em> para<br>operação de alto padrão.</h2>
     </div>
-    <div class="before-after fade-up">
-      <div class="before-col">
-        <span class="ba-label">Antes do PREVISA</span>
+    <div class="ba-wrap reveal">
+      <div class="ba-before">
+        <div class="ba-label">Antes do PREVISA</div>
         <ul class="ba-list">
-          <li><div class="ba-dot">✗</div><span>Caos operacional e ausência de processos</span></li>
-          <li><div class="ba-dot">✗</div><span>Faturamento imprevisível e instável</span></li>
-          <li><div class="ba-dot">✗</div><span>Marketing sem direção e sem ROI</span></li>
-          <li><div class="ba-dot">✗</div><span>Equipe perdida sem padrão de atendimento</span></li>
-          <li><div class="ba-dot">✗</div><span>Baixa recorrência de clientes</span></li>
-          <li><div class="ba-dot">✗</div><span>Dono preso no operacional</span></li>
-          <li><div class="ba-dot">✗</div><span>Sensação de trabalhar muito e crescer pouco</span></li>
+          <li><div class="ba-x">✗</div><span>Caos operacional e ausência total de processos</span></li>
+          <li><div class="ba-x">✗</div><span>Faturamento imprevisível e ciclos instáveis</span></li>
+          <li><div class="ba-x">✗</div><span>Marketing sem direção e sem retorno mensurável</span></li>
+          <li><div class="ba-x">✗</div><span>Equipe perdida, sem padrão de atendimento</span></li>
+          <li><div class="ba-x">✗</div><span>Baixa recorrência e alto custo de aquisição</span></li>
+          <li><div class="ba-x">✗</div><span>Dono preso no operacional, sem visão estratégica</span></li>
+          <li><div class="ba-x">✗</div><span>Sensação de trabalhar muito e crescer pouco</span></li>
         </ul>
       </div>
-      <div class="divider-col">
-        <div class="divider-badge">PREVISA</div>
+      <div class="ba-center">
+        <div class="ba-center-text">PREVISA</div>
       </div>
-      <div class="after-col">
-        <span class="ba-label">Depois do PREVISA</span>
+      <div class="ba-after">
+        <div class="ba-label">Depois do PREVISA</div>
         <ul class="ba-list">
-          <li><div class="ba-dot">✓</div><span>Processos claros, padronizados e delegáveis</span></li>
-          <li><div class="ba-dot">✓</div><span>Faturamento previsível e crescente todo mês</span></li>
-          <li><div class="ba-dot">✓</div><span>Marketing orientado por métricas e resultados</span></li>
-          <li><div class="ba-dot">✓</div><span>Equipe alinhada com padrão de excelência</span></li>
-          <li><div class="ba-dot">✓</div><span>Alta recorrência e lifetime value elevado</span></li>
-          <li><div class="ba-dot">✓</div><span>Gestão profissional com foco em escala</span></li>
-          <li><div class="ba-dot">✓</div><span>Crescimento consistente com qualidade de vida</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- AUTHORITY -->
-<section class="authority" id="autoridade">
-  <div class="container">
-    <div class="authority-inner fade-up">
-      <div class="authority-visual">
-        <div class="authority-card">
-          <div class="authority-avatar-lg">PK</div>
-          <h3>Priscilla Klein</h3>
-          <div class="role">Criadora do Método PREVISA</div>
-          <p>Especialista em gestão estratégica e crescimento de clínicas de estética, com trajetória em grandes operações do setor. Desenvolveu o PREVISA após identificar os padrões que separam clínicas estagnadas das que crescem de forma consistente.</p>
-          <div class="authority-badges">
-            <span class="authority-badge">300+ clínicas</span>
-            <span class="authority-badge">Gestão estratégica</span>
-            <span class="authority-badge">Estética premium</span>
-            <span class="authority-badge">Método próprio</span>
-          </div>
-        </div>
-      </div>
-      <div class="authority-text">
-        <span class="section-label">Sobre Priscilla Klein</span>
-        <h2>A especialista que entende a realidade da sua clínica</h2>
-        <p>Priscilla Klein não chegou ao PREVISA pela teoria. Sua formação foi construída dentro das grandes operações de estética do Brasil, onde aprendeu na prática o que funciona — e o que não funciona — para crescer de forma sustentável.</p>
-        <p>Com visão comercial e operacional apurada, ela desenvolveu um método que funciona porque foi testado na realidade das clínicas, com seus desafios, recursos e contextos específicos.</p>
-        <ul class="authority-points">
-          <li>
-            <div class="ap-icon">🎯</div>
-            <span>Experiência em grandes operações de estética com visão prática de crescimento</span>
-          </li>
-          <li>
-            <div class="ap-icon">🤝</div>
-            <span>Acompanhamento próximo com suporte estratégico personalizado para cada clínica</span>
-          </li>
-          <li>
-            <div class="ap-icon">📊</div>
-            <span>Método aplicado à realidade das clínicas, com foco em resultados mensuráveis</span>
-          </li>
-          <li>
-            <div class="ap-icon">🚀</div>
-            <span>Visão comercial e operacional que combina marketing inteligente com gestão eficiente</span>
-          </li>
+          <li><div class="ba-ck">✓</div><span>Processos claros, padronizados e delegáveis</span></li>
+          <li><div class="ba-ck">✓</div><span>Faturamento previsível e crescente todo mês</span></li>
+          <li><div class="ba-ck">✓</div><span>Marketing orientado por dados e resultados reais</span></li>
+          <li><div class="ba-ck">✓</div><span>Equipe alinhada com padrão de excelência</span></li>
+          <li><div class="ba-ck">✓</div><span>Alta recorrência e lifetime value elevado</span></li>
+          <li><div class="ba-ck">✓</div><span>Gestão estratégica com foco em escala</span></li>
+          <li><div class="ba-ck">✓</div><span>Crescimento consistente com qualidade de vida</span></li>
         </ul>
       </div>
     </div>
@@ -642,109 +713,93 @@ footer{background:#07111F;padding:48px 0 32px}
 <!-- LEARN -->
 <section class="learn">
   <div class="container">
-    <div class="learn-header fade-up">
-      <span class="section-label">O Que Você Vai Aprender</span>
-      <h2>Competências que transformam sua clínica</h2>
-      <p>Não é teoria. É implementação prática com suporte estratégico real</p>
+    <div class="learn-header reveal">
+      <div>
+        <div class="sec-label sec-label-rose">O Que Você Vai Aprender</div>
+        <h2>Competências que<br><em>transformam</em> sua clínica</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:flex-end">
+        <p style="font-size:15px;font-weight:300;color:var(--silver);line-height:1.8">Não é teoria. É implementação prática com suporte estratégico real, aplicado diretamente na realidade da sua operação.</p>
+      </div>
     </div>
-    <div class="learn-grid fade-up">
-      <div class="learn-item">
-        <div class="learn-num">01</div>
-        <div class="learn-text"><strong>Comercial previsível</strong>Como estruturar um processo comercial que gera faturamento consistente todo mês</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-num">02</div>
-        <div class="learn-text"><strong>Aumentar recorrência</strong>Como fazer pacientes voltarem mais vezes e permanecerem fiéis à clínica</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-num">03</div>
-        <div class="learn-text"><strong>Análise de resultados</strong>Como ler indicadores e tomar decisões baseadas em dados reais</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-num">04</div>
-        <div class="learn-text"><strong>Cobrar sua agência</strong>Como definir metas, monitorar resultados e exigir ROI do marketing</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-num">05</div>
-        <div class="learn-text"><strong>Delegar funções</strong>Como criar processos claros para que a equipe execute sem depender de você</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-num">06</div>
-        <div class="learn-text"><strong>Aumentar conversão</strong>Como converter mais leads em agendamentos e mais agendamentos em clientes fiéis</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-num">07</div>
-        <div class="learn-text"><strong>Organizar atendimento</strong>Como criar um padrão de excelência que eleva a percepção de valor</div>
-      </div>
-      <div class="learn-item">
-        <div class="learn-num">08</div>
-        <div class="learn-text"><strong>Escalar com sustentabilidade</strong>Como crescer sem aumentar proporcionalmente o esforço e o estresse</div>
-      </div>
+    <div class="learn-grid reveal">
+      <div class="learn-item"><div class="learn-n">01</div><div class="learn-body"><strong>Comercial previsível</strong><p>Estruturar um processo de vendas que gera faturamento consistente todos os meses</p></div></div>
+      <div class="learn-item"><div class="learn-n">02</div><div class="learn-body"><strong>Aumentar recorrência</strong><p>Fazer pacientes voltarem mais vezes e permanecerem fiéis à sua clínica</p></div></div>
+      <div class="learn-item"><div class="learn-n">03</div><div class="learn-body"><strong>Análise de resultados</strong><p>Ler indicadores corretamente e tomar decisões estratégicas baseadas em dados</p></div></div>
+      <div class="learn-item"><div class="learn-n">04</div><div class="learn-body"><strong>Cobrar sua agência</strong><p>Definir metas claras, monitorar resultados e exigir ROI real do marketing</p></div></div>
+      <div class="learn-item"><div class="learn-n">05</div><div class="learn-body"><strong>Delegar com eficiência</strong><p>Criar processos que a equipe execute sem depender da sua presença constante</p></div></div>
+      <div class="learn-item"><div class="learn-n">06</div><div class="learn-body"><strong>Aumentar conversão</strong><p>Converter mais leads em agendamentos e mais agendamentos em clientes fiéis</p></div></div>
+      <div class="learn-item"><div class="learn-n">07</div><div class="learn-body"><strong>Padrão de atendimento</strong><p>Criar uma experiência de excelência que eleva a percepção de valor da sua clínica</p></div></div>
+      <div class="learn-item"><div class="learn-n">08</div><div class="learn-body"><strong>Escalar com sustentabilidade</strong><p>Crescer sem aumentar proporcionalmente o esforço, o estresse e os riscos</p></div></div>
     </div>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="testimonials">
+<section class="testi">
+  <div class="testi-bg"></div>
   <div class="container">
-    <div class="testimonials-header fade-up">
-      <span class="section-label">Resultados Reais</span>
-      <h2>Clínicas que transformaram sua operação com o PREVISA</h2>
+    <div class="testi-header reveal">
+      <div class="sec-label" style="justify-content:center">Resultados Reais</div>
+      <h2>Clínicas que <em style="color:var(--gold2);font-style:italic">transformaram</em> sua operação</h2>
     </div>
-    <div class="testi-grid fade-up">
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-quote">Em 90 dias estruturamos nosso comercial do zero. Hoje temos processo de recorrência, agendamento ativo e faturamento 3x maior que antes. O PREVISA foi o divisor de águas da nossa clínica.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">AM</div>
+    <div class="testi-grid reveal">
+      <div class="tc">
+        <span class="tc-quote-mark">"</span>
+        <div class="tc-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="tc-text">Em 90 dias estruturamos nosso comercial do zero. Hoje temos processo de recorrência, agendamento ativo e faturamento 3x maior. O PREVISA foi o divisor de águas da nossa clínica.</div>
+        <div class="tc-auth">
+          <div class="tc-av">AM</div>
           <div>
-            <div class="testi-name">Ana Marcela S.</div>
-            <div class="testi-role">Clínica de Estética — SP</div>
-            <div class="testi-badge">+287% faturamento</div>
+            <div class="tc-name">Ana Marcela S.</div>
+            <div class="tc-role">Clínica de Estética — São Paulo</div>
+            <div class="tc-badge">+287% faturamento</div>
           </div>
         </div>
       </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-quote">Eu era biomédica excelente e péssima gestora. A Priscilla me mostrou como criar processos claros, delegar e ter controle financeiro real. Nossa taxa de retorno foi de 31% para 74%.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">RB</div>
+      <div class="tc">
+        <span class="tc-quote-mark">"</span>
+        <div class="tc-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="tc-text">Era biomédica excelente e péssima gestora. A Priscilla me mostrou como criar processos claros, delegar e ter controle financeiro real. Nossa taxa de retorno foi de 31% para 74%.</div>
+        <div class="tc-auth">
+          <div class="tc-av">RB</div>
           <div>
-            <div class="testi-name">Renata B.</div>
-            <div class="testi-role">Biomédica — RJ</div>
-            <div class="testi-badge">+139% recorrência</div>
+            <div class="tc-name">Renata B.</div>
+            <div class="tc-role">Biomédica — Rio de Janeiro</div>
+            <div class="tc-badge">+139% recorrência</div>
           </div>
         </div>
       </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <div class="testi-quote">Saí do caos operacional para uma clínica com processos definidos, equipe alinhada e crescimento mês a mês. O diagnóstico estratégico foi o ponto de virada que eu precisava.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">CL</div>
+      <div class="tc">
+        <span class="tc-quote-mark">"</span>
+        <div class="tc-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <div class="tc-text">Saí do caos operacional para uma clínica com processos definidos, equipe alinhada e crescimento mês a mês. O diagnóstico estratégico foi o ponto de virada que eu precisava.</div>
+        <div class="tc-auth">
+          <div class="tc-av">CL</div>
           <div>
-            <div class="testi-name">Carolina L.</div>
-            <div class="testi-role">Fisioterapeuta Estética — MG</div>
-            <div class="testi-badge">+4x em 6 meses</div>
+            <div class="tc-name">Carolina L.</div>
+            <div class="tc-role">Fisioterapeuta Estética — Minas Gerais</div>
+            <div class="tc-badge">+4x em 6 meses</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="results-bar fade-up">
-      <div class="result-item">
-        <div class="result-num">300<span>+</span></div>
-        <div class="result-label">Clínicas atendidas</div>
+    <div class="results-strip reveal">
+      <div class="res-item">
+        <div class="res-n">300<span>+</span></div>
+        <div class="res-l">Clínicas atendidas</div>
       </div>
-      <div class="result-item">
-        <div class="result-num">R$<span>2M</span></div>
-        <div class="result-label">Em faturamento gerado</div>
+      <div class="res-item">
+        <div class="res-n">R$<span>2M+</span></div>
+        <div class="res-l">Faturamento gerado</div>
       </div>
-      <div class="result-item">
-        <div class="result-num">78<span>%</span></div>
-        <div class="result-label">Taxa de sucesso documentada</div>
+      <div class="res-item">
+        <div class="res-n">78<span>%</span></div>
+        <div class="res-l">Taxa de sucesso</div>
       </div>
-      <div class="result-item">
-        <div class="result-num">4.8<span>×</span></div>
-        <div class="result-label">Crescimento médio em 6 meses</div>
+      <div class="res-item">
+        <div class="res-n">4.8<span>×</span></div>
+        <div class="res-l">Crescimento médio</div>
       </div>
     </div>
   </div>
@@ -753,54 +808,37 @@ footer{background:#07111F;padding:48px 0 32px}
 <!-- FAQ -->
 <section class="faq" id="faq">
   <div class="container">
-    <div class="faq-header fade-up">
-      <span class="section-label">Perguntas Frequentes</span>
-      <h2>Tire suas dúvidas</h2>
-    </div>
-    <div class="faq-list fade-up">
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Para que tipo de clínica o PREVISA é indicado?
-          <span class="faq-arrow">+</span>
-        </button>
-        <div class="faq-a">
-          <p>O PREVISA foi desenvolvido para clínicas de estética em geral, incluindo estética avançada, odontologia estética, biomedicina e fisioterapia estética. É ideal para clínicas que faturam entre R$ 10k e R$ 100k/mês e desejam crescer com previsibilidade.</p>
-        </div>
+    <div class="faq-inner reveal">
+      <div class="faq-left">
+        <div class="sec-label">Perguntas Frequentes</div>
+        <h2>Tire suas<br><em>dúvidas</em></h2>
+        <div class="gold-line"></div>
+        <p>Reunimos as perguntas mais comuns de profissionais antes de iniciarem o PREVISA. Se não encontrar sua resposta aqui, fale diretamente com a equipe.</p>
+        <br><br>
+        <a href="https://wa.me/5511999999999" class="btn-rose">Fazer uma pergunta</a>
       </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Quanto tempo leva para ver resultados?
-          <span class="faq-arrow">+</span>
-        </button>
-        <div class="faq-a">
-          <p>A maioria das clínicas começa a ver melhorias mensuráveis entre 30 e 60 dias após o início da implementação. Resultados consistentes e expressivos geralmente aparecem entre 90 e 180 dias, dependendo do ponto de partida e da implementação.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Como funciona o diagnóstico estratégico?
-          <span class="faq-arrow">+</span>
-        </button>
-        <div class="faq-a">
-          <p>O diagnóstico estratégico é uma sessão de análise completa onde avaliamos sua situação financeira atual, gargalos comerciais, posicionamento de mercado e oportunidades de crescimento. Ao final, você recebe um plano de ação personalizado para sua clínica.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Funciona para clínica pequena que ainda está começando?
-          <span class="faq-arrow">+</span>
-        </button>
-        <div class="faq-a">
-          <p>Sim. Na verdade, implementar o PREVISA desde o início é um dos maiores diferenciais que uma clínica pode ter. Estruturar processos, comercial e gestão desde a fundação evita anos de retrabalho e acelera significativamente o crescimento.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
-          O método substitui a minha agência de marketing?
-          <span class="faq-arrow">+</span>
-        </button>
-        <div class="faq-a">
-          <p>Não. O PREVISA ensina como potencializar sua agência e cobrar resultados reais dela. Você aprenderá a definir metas claras, acompanhar métricas e garantir que seu investimento em marketing gere ROI mensurável.</p>
+      <div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">Para que tipo de clínica o PREVISA é indicado?<span class="faq-arrow">+</span></button>
+            <div class="faq-a"><p>O PREVISA foi desenvolvido para clínicas de estética em geral — estética avançada, odontologia estética, biomedicina e fisioterapia estética. Ideal para clínicas que faturam entre R$ 10k e R$ 100k/mês e desejam crescer com previsibilidade.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">Quanto tempo leva para ver resultados?<span class="faq-arrow">+</span></button>
+            <div class="faq-a"><p>A maioria das clínicas começa a ver melhorias mensuráveis entre 30 e 60 dias após o início da implementação. Resultados expressivos aparecem entre 90 e 180 dias, dependendo do ponto de partida e da dedicação à implementação.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">Como funciona o diagnóstico estratégico?<span class="faq-arrow">+</span></button>
+            <div class="faq-a"><p>O diagnóstico é uma sessão completa onde avaliamos sua situação financeira, gargalos comerciais, posicionamento e oportunidades de crescimento. Ao final, você recebe um plano de ação personalizado para sua clínica.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">Funciona para clínica pequena ou recém-aberta?<span class="faq-arrow">+</span></button>
+            <div class="faq-a"><p>Sim — implementar o PREVISA desde o início é um dos maiores diferenciais. Estruturar processos, comercial e gestão desde a fundação evita anos de retrabalho e acelera significativamente o crescimento.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">O método substitui minha agência de marketing?<span class="faq-arrow">+</span></button>
+            <div class="faq-a"><p>Não. O PREVISA ensina como potencializar sua agência e cobrar resultados reais. Você aprenderá a definir metas claras, acompanhar métricas e garantir que seu investimento em marketing gere ROI mensurável.</p></div>
+          </div>
         </div>
       </div>
     </div>
@@ -809,19 +847,24 @@ footer{background:#07111F;padding:48px 0 32px}
 
 <!-- CTA FINAL -->
 <section class="cta-final" id="diagnostico">
+  <div class="cta-bg-ring"></div>
+  <div class="cta-bg-ring2"></div>
   <div class="container">
-    <span class="section-label white" style="display:block;text-align:center">Próximo Passo</span>
-    <h2>Sua clínica pode crescer<br><em>com previsibilidade.</em></h2>
-    <p>Pare de operar no improviso. Estruture sua clínica com estratégia, processos e crescimento sustentável através do Método PREVISA.</p>
-    <div class="cta-btns">
-      <a href="https://wa.me/5511999999999" class="btn-primary" style="font-size:16px;padding:18px 40px">→ Solicitar Diagnóstico Estratégico</a>
-      <a href="https://wa.me/5511999999999" class="btn-outline">💬 Falar com a Equipe</a>
-    </div>
-    <div class="trust-row">
-      <div class="trust-item"><div class="trust-dot"></div>Atendimento personalizado</div>
-      <div class="trust-item"><div class="trust-dot"></div>Diagnóstico gratuito</div>
-      <div class="trust-item"><div class="trust-dot"></div>Sem compromisso inicial</div>
-      <div class="trust-item"><div class="trust-dot"></div>Método comprovado</div>
+    <div class="reveal">
+      <div class="sec-label" style="justify-content:center">Próximo Passo</div>
+      <h2>Sua clínica pode crescer<br><em>com previsibilidade.</em></h2>
+      <div class="gold-line" style="margin:28px auto;width:60px"></div>
+      <p>Pare de operar no improviso. Estruture sua clínica com estratégia, processos e crescimento sustentável através do Método PREVISA — com o acompanhamento de quem entende a sua realidade.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/5511999999999" class="btn-primary" style="font-size:14px;padding:18px 48px"><span>→ Solicitar Diagnóstico Estratégico</span></a>
+        <a href="https://wa.me/5511999999999" class="btn-outline">Falar com a Equipe</a>
+      </div>
+      <div class="cta-trust">
+        <div class="trust-i"><div class="trust-dot"></div>Atendimento personalizado</div>
+        <div class="trust-i"><div class="trust-dot"></div>Diagnóstico gratuito</div>
+        <div class="trust-i"><div class="trust-dot"></div>Sem compromisso inicial</div>
+        <div class="trust-i"><div class="trust-dot"></div>Método comprovado</div>
+      </div>
     </div>
   </div>
 </section>
@@ -829,74 +872,61 @@ footer{background:#07111F;padding:48px 0 32px}
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="footer-inner">
-      <div>
-        <div class="footer-logo">PREVISA<span>.</span></div>
-        <div style="font-size:12px;color:rgba(255,255,255,0.25);margin-top:6px">Priscilla Klein — Gestão Estratégica para Clínicas</div>
+    <div class="foot-top">
+      <div class="foot-brand">
+        <h3>PREVISA<span>.</span></h3>
+        <div class="foot-brand-sub">Priscilla Klein — Gestão Estratégica</div>
+        <p>"Processos claros. Crescimento previsível. Resultados sustentáveis."</p>
       </div>
-      <div class="footer-links">
-        <a href="#metodo">Método</a>
-        <a href="#para-quem">Para Quem</a>
-        <a href="#autoridade">Sobre</a>
-        <a href="#faq">FAQ</a>
-      </div>
-      <div class="footer-social">
-        <a href="#" class="social-btn" title="Instagram">📷</a>
-        <a href="https://wa.me/5511999999999" class="social-btn" title="WhatsApp">💬</a>
+      <nav class="foot-nav">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#metodo">O Método PREVISA</a></li>
+          <li><a href="#para-quem">Para Quem É</a></li>
+          <li><a href="#priscilla">Priscilla Klein</a></li>
+          <li><a href="#faq">Perguntas Frequentes</a></li>
+          <li><a href="#diagnostico">Diagnóstico Gratuito</a></li>
+        </ul>
+      </nav>
+      <div class="foot-social">
+        <h4>Contato</h4>
+        <div class="foot-socials">
+          <a href="#" class="soc-link"><div class="soc-ico">📷</div>@priscilla.klein</a>
+          <a href="https://wa.me/5511999999999" class="soc-link"><div class="soc-ico">💬</div>WhatsApp</a>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-copy">© 2025 Método PREVISA · Priscilla Klein. Todos os direitos reservados.</div>
-      <div class="footer-tagline">Processos claros. Crescimento previsível. Resultados sustentáveis.</div>
+    <div class="foot-bottom">
+      <div class="foot-copy">© 2025 Método PREVISA · Priscilla Klein. Todos os direitos reservados.</div>
+      <div class="foot-tagline">Processos claros. Crescimento previsível. Resultados sustentáveis.</div>
     </div>
   </div>
 </footer>
 
-<!-- WHATSAPP FLOAT -->
-<a href="https://wa.me/5511999999999" class="wa-float" title="Falar no WhatsApp">
-  <div class="wa-pulse"></div>
-  💬
+<!-- WA FLOAT -->
+<a href="https://wa.me/5511999999999" class="wa-float">
+  <div class="wa-dot"></div>
+  WhatsApp
 </a>
 
 <script>
-// Navbar scroll
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 60);
-});
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
 
-// Fade up on scroll
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(el => {
-    if (el.isIntersecting) {
-      el.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+const obs = new IntersectionObserver(els => {
+  els.forEach(el => { if(el.isIntersecting) el.target.classList.add('visible') });
+}, {threshold: 0.1, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => obs.observe(el));
 
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-// FAQ
 function toggleFaq(btn) {
-  const item = btn.parentElement;
-  const answer = item.querySelector('.faq-a');
-  const isOpen = btn.classList.contains('open');
+  const a = btn.nextElementSibling;
+  const open = btn.classList.contains('open');
   document.querySelectorAll('.faq-q.open').forEach(q => {
     q.classList.remove('open');
-    q.parentElement.querySelector('.faq-a').classList.remove('open');
+    q.nextElementSibling.classList.remove('open');
   });
-  if (!isOpen) {
-    btn.classList.add('open');
-    answer.classList.add('open');
-  }
+  if(!open){ btn.classList.add('open'); a.classList.add('open'); }
 }
-
-// Animate chart bars on hero visibility
-setTimeout(() => {
-  document.querySelectorAll('.bar').forEach((b, i) => {
-    b.style.transition = `height 0.6s ease ${i * 0.08}s`;
-  });
-}, 500);
 </script>
 </body>
 </html>
