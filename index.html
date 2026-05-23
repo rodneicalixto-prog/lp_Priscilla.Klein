@@ -330,32 +330,141 @@ footer{background:#050505;padding:56px 0 32px}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
 
 /* MOBILE */
+/* ── TABLET (≤1024px) ── */
 @media(max-width:1024px){
+.container{padding:0 28px}
+nav{padding:16px 0}
+.nav-links{display:none}
+.nav-cta{font-size:9px;padding:8px 16px}
+
+/* Hero */
 .hero-content{grid-template-columns:1fr}
 .hero-right{display:none}
+.hero-left{padding:100px 28px 60px}
+.hero h1{font-size:clamp(32px,5vw,48px)}
+.hero-stats{gap:20px}
+
+/* About */
 .about-inner{grid-template-columns:1fr}
-.method-header{grid-template-columns:1fr}
+.about-photo-col{max-width:400px;margin:0 auto}
+.about-float-badge{right:0}
+
+/* Problemas */
+.pain-grid{grid-template-columns:1fr 1fr}
+
+/* Método */
+.method-header{grid-template-columns:1fr;gap:20px}
 .pillars{grid-template-columns:1fr 1fr}
-.forwhom-header{grid-template-columns:1fr}
-.learn-header{grid-template-columns:1fr}
-.ba-wrap{grid-template-columns:1fr;display:block}
-.ba-center{display:none}
-.ba-after{border-top:2px solid var(--gold)}
+
+/* Para quem */
+.forwhom-header{grid-template-columns:1fr;gap:20px}
+.who-grid{grid-template-columns:1fr 1fr}
+
+/* Transformação */
+.ba-wrap{grid-template-columns:1fr 120px 1fr}
+
+/* Learn */
+.learn-header{grid-template-columns:1fr;gap:20px}
+.learn-grid{grid-template-columns:1fr}
+
+/* Depoimentos */
 .testi-grid{grid-template-columns:1fr}
 .results-strip{grid-template-columns:1fr 1fr}
-.faq-inner{grid-template-columns:1fr}
-.foot-top{grid-template-columns:1fr}
-.nav-links{display:none}
-.container{padding:0 28px}
+
+/* FAQ */
+.faq-inner{grid-template-columns:1fr;gap:32px}
+
+/* CTA */
+.cta-trust{gap:20px}
+
+/* Rodapé */
+.foot-top{grid-template-columns:1fr;gap:32px}
+.foot-bottom{flex-direction:column;gap:8px;text-align:center}
 }
+
+/* ── MOBILE GRANDE (≤768px) ── */
 @media(max-width:768px){
-.pain-grid{grid-template-columns:1fr 1fr}
-.who-grid{grid-template-columns:1fr 1fr}
+.container{padding:0 20px}
+
+/* Hero */
+.hero-left{padding:88px 20px 48px}
+.hero h1{font-size:32px}
+.hero-tagline{font-size:16px}
+.hero-btns{flex-direction:column;align-items:flex-start;gap:12px}
+.btn-primary,.btn-outline,.btn-rose{width:100%;justify-content:center}
+.hero-stats{gap:12px}
+.proof-sep{display:none}
+
+/* About */
+.about{padding:64px 0}
+.about-inner{gap:40px}
+.about-qualities{grid-template-columns:1fr}
+
+/* Problemas */
+.pain-grid{grid-template-columns:1fr}
+.problem{padding:72px 0}
+.callout-block{padding:36px 24px}
+
+/* Método */
+.method{padding:72px 0}
 .pillars{grid-template-columns:1fr}
+.pillar{padding:28px 24px}
+
+/* Para quem */
+.forwhom{padding:72px 0}
+.who-grid{grid-template-columns:1fr}
+
+/* Transformação */
+.transform{padding:72px 0}
+.ba-wrap{grid-template-columns:1fr 80px 1fr}
+.ba-before,.ba-after{padding:32px 20px}
+.letter{font-size:24px}
+
+/* Learn */
+.learn{padding:72px 0}
 .learn-grid{grid-template-columns:1fr}
-.cta-btns{flex-direction:column;align-items:center}
-.results-strip{grid-template-columns:1fr 1fr;gap:32px;border:none;padding:32px 0}
-.res-item{border-right:none}
+.learn-item{padding:24px 20px}
+
+/* Depoimentos */
+.testi{padding:72px 0}
+.results-strip{grid-template-columns:1fr 1fr;padding:32px 20px;gap:24px;border:none}
+.res-item{border-right:none;padding:0}
+.result-num{font-size:36px}
+
+/* FAQ */
+.faq{padding:72px 0}
+.faq-left{text-align:left}
+
+/* CTA */
+.cta-final{padding:80px 0}
+.cta-btns{flex-direction:column;align-items:center;gap:12px}
+.cta-btns .btn-primary,.cta-btns .btn-outline{width:100%;max-width:320px;justify-content:center}
+.cta-trust{gap:16px}
+
+/* Rodapé */
+.foot-top{padding-bottom:32px}
+.foot-tagline{text-align:center}
+}
+
+/* ── MOBILE PEQUENO (≤480px) ── */
+@media(max-width:480px){
+.container{padding:0 16px}
+.hero h1{font-size:28px}
+.hero-stats{flex-direction:column;gap:16px;align-items:flex-start}
+.proof-sep{display:none}
+.stat{border-left:2px solid rgba(201,168,76,0.3);padding-left:12px}
+.pain-grid{grid-template-columns:1fr}
+.pain-item{padding:24px 20px}
+.ba-wrap{grid-template-columns:1fr 64px 1fr}
+.ba-before,.ba-after{padding:28px 16px}
+.ba-before .ba-list li,.ba-after .ba-list li{font-size:12px}
+.letter{font-size:20px}
+.results-strip{grid-template-columns:1fr 1fr}
+.testi-header h2{font-size:28px}
+.cta-final h2{font-size:32px}
+.about-photo-col{max-width:100%}
+nav{padding:14px 0}
+.nav-logo-main{font-size:18px}
 }
 </style>
 </head>
