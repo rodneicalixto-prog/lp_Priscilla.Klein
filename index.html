@@ -221,7 +221,7 @@ nav.scrolled{background:rgba(8,8,8,0.96);backdrop-filter:blur(20px);padding:16px
 .ba-wrap{display:grid;grid-template-columns:1fr 160px 1fr;align-items:stretch}
 .ba-before{background:var(--charcoal);padding:56px 48px;border:1px solid rgba(245,245,240,0.05)}
 .ba-center{display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(to bottom,var(--gold2),var(--gold),var(--rose),var(--gold));position:relative;overflow:hidden}
-.ba-center-text{writing-mode:vertical-rl;font-family:var(--font-display);font-size:22px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--black);white-space:nowrap;text-shadow:0 1px 0 rgba(255,255,255,0.15)}
+.ba-center-text{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;width:100%;height:100%}
 .ba-after{background:var(--graphite);padding:56px 48px;border:1px solid rgba(201,168,76,0.1)}
 .ba-label{font-size:9px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:12px}
 .ba-before .ba-label{color:rgba(245,245,240,0.25)}
@@ -685,9 +685,15 @@ footer{background:#050505;padding:56px 0 32px}
         </ul>
       </div>
       <div class="ba-center">
-        <div class="ba-center-deco" style="width:1px;height:40px;background:rgba(8,8,8,0.18);margin-bottom:20px"></div>
-        <div class="ba-center-text">PREVISA</div>
-        <div class="ba-center-deco" style="width:1px;height:40px;background:rgba(8,8,8,0.18);margin-top:20px"></div>
+        <div class="ba-center-text">
+          <span style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#080808;line-height:1.15;letter-spacing:0.05em">P</span>
+          <span style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#0a0808;line-height:1.15;letter-spacing:0.05em">R</span>
+          <span style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#0d0808;line-height:1.15;letter-spacing:0.05em">E</span>
+          <span style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#100808;line-height:1.15;letter-spacing:0.05em">V</span>
+          <span style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#130608;line-height:1.15;letter-spacing:0.05em">I</span>
+          <span style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#160508;line-height:1.15;letter-spacing:0.05em">S</span>
+          <span style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#190408;line-height:1.15;letter-spacing:0.05em">A</span>
+        </div>
       </div>
       <div class="ba-after">
         <div class="ba-label">Depois do PREVISA</div>
