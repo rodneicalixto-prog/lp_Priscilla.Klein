@@ -167,7 +167,7 @@ nav.scrolled{background:rgba(8,8,8,0.96);backdrop-filter:blur(20px);padding:16px
 .pain-item{background:var(--charcoal);padding:36px 28px;border-top:2px solid transparent;transition:all 0.35s;cursor:default}
 .pain-item:hover{background:var(--graphite);border-top-color:var(--gold)}
 .pain-item:nth-child(3n+2):hover{border-top-color:var(--rose)}
-.pain-ico{font-size:28px;margin-bottom:18px;display:block}
+.pain-ico{width:44px;height:44px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(201,168,76,0.18);background:rgba(201,168,76,0.06);flex-shrink:0;transition:all 0.35s}.pain-ico svg{width:20px;height:20px;stroke:rgba(201,168,76,0.7);stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:stroke 0.3s}.pain-item:hover .pain-ico{border-color:rgba(201,168,76,0.5);background:rgba(201,168,76,0.12)}.pain-item:hover .pain-ico svg{stroke:var(--gold2)}
 .pain-t{font-family:var(--font-display);font-size:16px;font-weight:500;color:var(--white);margin-bottom:10px}
 .pain-d{font-size:13px;font-weight:300;color:var(--silver);line-height:1.65}
 .callout-block{margin-top:64px;text-align:center;padding:64px;border:1px solid rgba(201,168,76,0.12);position:relative}
@@ -609,42 +609,42 @@ nav{padding:14px 0}
     </div>
     <div class="pain-grid reveal">
       <div class="pain-item">
-        <span class="pain-ico">📉</span>
+        <div class="pain-ico"><svg viewBox="0 0 24 24"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg></div>
         <div class="pain-t">Faturamento imprevisível</div>
         <div class="pain-d">Meses excelentes seguidos de meses fracos, sem entender o motivo</div>
       </div>
       <div class="pain-item">
-        <span class="pain-ico">📢</span>
+        <div class="pain-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
         <div class="pain-t">Dependência de indicação</div>
         <div class="pain-d">Sem um funil ativo de aquisição, tudo depende do boca a boca</div>
       </div>
       <div class="pain-item">
-        <span class="pain-ico">🔄</span>
+        <div class="pain-ico"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg></div>
         <div class="pain-t">Clientes que não retornam</div>
         <div class="pain-d">Baixa recorrência mesmo com atendimento de qualidade reconhecida</div>
       </div>
       <div class="pain-item">
-        <span class="pain-ico">🏗️</span>
+        <div class="pain-ico"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
         <div class="pain-t">Sem processos definidos</div>
         <div class="pain-d">Operação travada no improviso, impossível de crescer ou delegar</div>
       </div>
       <div class="pain-item">
-        <span class="pain-ico">📊</span>
+        <div class="pain-ico"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
         <div class="pain-t">Baixa conversão de leads</div>
         <div class="pain-d">Muitos contatos, poucos agendamentos, menos ainda clientes fiéis</div>
       </div>
       <div class="pain-item">
-        <span class="pain-ico">🎯</span>
+        <div class="pain-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
         <div class="pain-t">Marketing sem retorno</div>
         <div class="pain-d">Agência consumindo orçamento sem entregar ROI mensurável</div>
       </div>
       <div class="pain-item">
-        <span class="pain-ico">👥</span>
+        <div class="pain-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <div class="pain-t">Equipe desalinhada</div>
         <div class="pain-d">Sem padrão de atendimento, cada colaborador age de forma diferente</div>
       </div>
       <div class="pain-item">
-        <span class="pain-ico">😓</span>
+        <div class="pain-ico"><svg viewBox="0 0 24 24"><path d="M12 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/><path d="M8 15s1.5-2 4-2 4 2 4 2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
         <div class="pain-t">Muito esforço, pouco crescimento</div>
         <div class="pain-d">Sensação constante de trabalhar ao máximo e crescer muito pouco</div>
       </div>
