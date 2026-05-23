@@ -218,10 +218,10 @@ nav.scrolled{background:rgba(8,8,8,0.96);backdrop-filter:blur(20px);padding:16px
 .transform-header{text-align:center;margin-bottom:80px}
 .transform-header h2{font-family:var(--font-display);font-size:clamp(30px,3vw,48px);font-weight:600;color:var(--white);line-height:1.2}
 .transform-header h2 em{color:var(--gold2);font-style:italic}
-.ba-wrap{display:grid;grid-template-columns:1fr 80px 1fr;align-items:stretch}
+.ba-wrap{display:grid;grid-template-columns:1fr 160px 1fr;align-items:stretch}
 .ba-before{background:var(--charcoal);padding:56px 48px;border:1px solid rgba(245,245,240,0.05)}
-.ba-center{display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(to bottom,var(--gold),var(--rose));position:relative}
-.ba-center-text{writing-mode:vertical-rl;font-size:9px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:var(--black);white-space:nowrap}
+.ba-center{display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(to bottom,var(--gold2),var(--gold),var(--rose),var(--gold));position:relative;overflow:hidden}
+.ba-center-text{writing-mode:vertical-rl;font-family:var(--font-display);font-size:22px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--black);white-space:nowrap;text-shadow:0 1px 0 rgba(255,255,255,0.15)}
 .ba-after{background:var(--graphite);padding:56px 48px;border:1px solid rgba(201,168,76,0.1)}
 .ba-label{font-size:9px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:12px}
 .ba-before .ba-label{color:rgba(245,245,240,0.25)}
@@ -685,7 +685,9 @@ footer{background:#050505;padding:56px 0 32px}
         </ul>
       </div>
       <div class="ba-center">
+        <div class="ba-center-deco" style="width:1px;height:40px;background:rgba(8,8,8,0.18);margin-bottom:20px"></div>
         <div class="ba-center-text">PREVISA</div>
+        <div class="ba-center-deco" style="width:1px;height:40px;background:rgba(8,8,8,0.18);margin-top:20px"></div>
       </div>
       <div class="ba-after">
         <div class="ba-label">Depois do PREVISA</div>
