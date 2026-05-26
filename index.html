@@ -131,6 +131,21 @@ nav.scrolled{background:rgba(8,8,8,0.96);backdrop-filter:blur(20px);padding:16px
 .hnc-right{text-align:right}
 .hnc-badge{font-size:10px;font-weight:500;letter-spacing:0.14em;color:var(--rose2);background:var(--rose-dim);border:1px solid rgba(196,112,122,0.2);padding:6px 14px;text-transform:uppercase}
 
+/* ─── CLIENTS STRIP ─── */
+.clients{padding:56px 0;background:var(--piano);border-top:1px solid rgba(201,168,76,0.08);border-bottom:1px solid rgba(201,168,76,0.08)}
+.clients-label{text-align:center;font-size:10px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,76,0.45);margin-bottom:36px}
+.clients-track-wrap{overflow:hidden;position:relative}
+.clients-track-wrap::before,.clients-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
+.clients-track-wrap::before{left:0;background:linear-gradient(to right,var(--piano),transparent)}
+.clients-track-wrap::after{right:0;background:linear-gradient(to left,var(--piano),transparent)}
+.clients-track{display:flex;gap:56px;align-items:center;width:max-content;animation:marquee 32s linear infinite}
+.clients-track:hover{animation-play-state:paused}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.client-logo{display:flex;flex-direction:column;align-items:center;gap:3px;opacity:0.38;transition:opacity 0.3s;white-space:nowrap;padding:0 8px}
+.client-logo:hover{opacity:1}
+.client-logo-name{font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--white);letter-spacing:0.02em}
+.client-logo-sub{font-size:8px;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);opacity:0.7}
+
 /* ─── ABOUT / AUTHORITY ─── */
 .about{padding:140px 0;background:var(--piano);position:relative}
 .about-inner{display:grid;grid-template-columns:0.85fr 1.15fr;gap:80px;align-items:center}
@@ -556,6 +571,36 @@ nav{padding:14px 0}
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS STRIP -->
+<section class="clients">
+  <div class="clients-label">Clínicas &amp; marcas que já cresceram com o PREVISA</div>
+  <div class="clients-track-wrap">
+    <div class="clients-track">
+      <div class="client-logo"><span class="client-logo-name">Vittale</span><span class="client-logo-sub">Estética de Resultado</span></div>
+      <div class="client-logo"><span class="client-logo-name">Laserfast</span><span class="client-logo-sub">Depilação</span></div>
+      <div class="client-logo"><span class="client-logo-name">Belleviva</span><span class="client-logo-sub">Dermatologia &amp; Estética</span></div>
+      <div class="client-logo"><span class="client-logo-name">Body Laser</span><span class="client-logo-sub">Depilação a Laser</span></div>
+      <div class="client-logo"><span class="client-logo-name">Autentika</span><span class="client-logo-sub">Estética Clinic</span></div>
+      <div class="client-logo"><span class="client-logo-name">Octans</span><span class="client-logo-sub">Estética</span></div>
+      <div class="client-logo"><span class="client-logo-name">Athenas</span><span class="client-logo-sub">Terceirização de Cosméticos</span></div>
+      <div class="client-logo"><span class="client-logo-name">Pró Estética</span><span class="client-logo-sub">Desperte o Seu Poder</span></div>
+      <div class="client-logo"><span class="client-logo-name">Siluets</span><span class="client-logo-sub">Estética</span></div>
+      <div class="client-logo"><span class="client-logo-name">GiO</span><span class="client-logo-sub">Estética Avançada</span></div>
+      <!-- duplicado para loop contínuo -->
+      <div class="client-logo"><span class="client-logo-name">Vittale</span><span class="client-logo-sub">Estética de Resultado</span></div>
+      <div class="client-logo"><span class="client-logo-name">Laserfast</span><span class="client-logo-sub">Depilação</span></div>
+      <div class="client-logo"><span class="client-logo-name">Belleviva</span><span class="client-logo-sub">Dermatologia &amp; Estética</span></div>
+      <div class="client-logo"><span class="client-logo-name">Body Laser</span><span class="client-logo-sub">Depilação a Laser</span></div>
+      <div class="client-logo"><span class="client-logo-name">Autentika</span><span class="client-logo-sub">Estética Clinic</span></div>
+      <div class="client-logo"><span class="client-logo-name">Octans</span><span class="client-logo-sub">Estética</span></div>
+      <div class="client-logo"><span class="client-logo-name">Athenas</span><span class="client-logo-sub">Terceirização de Cosméticos</span></div>
+      <div class="client-logo"><span class="client-logo-name">Pró Estética</span><span class="client-logo-sub">Desperte o Seu Poder</span></div>
+      <div class="client-logo"><span class="client-logo-name">Siluets</span><span class="client-logo-sub">Estética</span></div>
+      <div class="client-logo"><span class="client-logo-name">GiO</span><span class="client-logo-sub">Estética Avançada</span></div>
     </div>
   </div>
 </section>
