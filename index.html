@@ -113,8 +113,8 @@ nav.scrolled{background:rgba(8,8,8,0.96);backdrop-filter:blur(20px);padding:16px
 .proof-sep{width:1px;height:40px;background:rgba(245,245,240,0.08)}
 
 /* HERO RIGHT — PHOTO */
-.hero-right{position:relative;overflow:hidden}
-.hero-photo-wrap{position:absolute;inset:0;display:flex;align-items:flex-end}
+.hero-right{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero-photo-wrap{position:relative;aspect-ratio:9/16;height:100%;max-width:100%}
 .hero-photo-bg{position:absolute;inset:0;background:#0D0D0D}
 .hero-photo-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}
 .photo-frame{width:260px;height:340px;border:1px solid rgba(201,168,76,0.2);position:relative;display:flex;align-items:center;justify-content:center}
@@ -131,14 +131,29 @@ nav.scrolled{background:rgba(8,8,8,0.96);backdrop-filter:blur(20px);padding:16px
 .hnc-right{text-align:right}
 .hnc-badge{font-size:10px;font-weight:500;letter-spacing:0.14em;color:var(--rose2);background:var(--rose-dim);border:1px solid rgba(196,112,122,0.2);padding:6px 14px;text-transform:uppercase}
 
+/* ─── CLIENTS STRIP ─── */
+.clients{padding:56px 0;background:var(--piano);border-top:1px solid rgba(201,168,76,0.08);border-bottom:1px solid rgba(201,168,76,0.08)}
+.clients-label{text-align:center;font-size:10px;font-weight:500;letter-spacing:0.3em;text-transform:uppercase;color:rgba(201,168,76,0.45);margin-bottom:36px}
+.clients-track-wrap{overflow:hidden;position:relative}
+.clients-track-wrap::before,.clients-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
+.clients-track-wrap::before{left:0;background:linear-gradient(to right,var(--piano),transparent)}
+.clients-track-wrap::after{right:0;background:linear-gradient(to left,var(--piano),transparent)}
+.clients-track{display:flex;gap:56px;align-items:center;width:max-content;animation:marquee 32s linear infinite}
+.clients-track:hover{animation-play-state:paused}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.client-logo{display:flex;flex-direction:column;align-items:center;gap:3px;opacity:0.38;transition:opacity 0.3s;white-space:nowrap;padding:0 8px}
+.client-logo:hover{opacity:1}
+.client-logo-name{font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--white);letter-spacing:0.02em}
+.client-logo-sub{font-size:8px;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);opacity:0.7}
+
 /* ─── ABOUT / AUTHORITY ─── */
 .about{padding:140px 0;background:var(--piano);position:relative}
 .about-inner{display:grid;grid-template-columns:0.85fr 1.15fr;gap:80px;align-items:center}
 .about-photo-col{position:relative}
-.about-photo-frame{position:relative;aspect-ratio:3/4;background:var(--charcoal);border:1px solid rgba(201,168,76,0.12);overflow:hidden;min-height:420px}
+.about-photo-frame{position:relative;aspect-ratio:9/16;background:var(--charcoal);border:1px solid rgba(201,168,76,0.12);overflow:hidden}
 .about-photo-frame::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--rose),var(--gold));z-index:2}
 .about-photo-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,8,0.1) 0%,transparent 30%,transparent 55%,rgba(8,8,8,0.6) 80%,rgba(8,8,8,0.95) 100%);z-index:1;pointer-events:none}
-.about-photo-inner{position:relative;width:100%;height:100%;min-height:420px;}
+.about-photo-inner{position:relative;width:100%;height:100%;}
 .about-photo-monogram{font-family:var(--font-display);font-size:96px;font-weight:600;color:rgba(201,168,76,0.1);line-height:1}
 .about-photo-hint{font-size:10px;letter-spacing:0.22em;color:rgba(245,245,240,0.15);text-transform:uppercase}
 .about-photo-tag{position:absolute;bottom:0;left:0;right:0;background:transparent;border-top:1px solid rgba(201,168,76,0.12);padding:20px 24px;z-index:3;backdrop-filter:blur(2px)}
@@ -513,7 +528,7 @@ nav{padding:14px 0}
         <h1>Sua clínica merece<br>crescer com<br><em>previsibilidade.</em></h1>
         <div class="hero-tagline">Estrutura que transforma. Método que escala.</div>
         <div class="gold-line"></div>
-        <p class="hero-desc">O Método PREVISA ajuda donos de clínicas de estética, biomédicos, dentistas e fisioterapeutas a construírem um faturamento previsível e crescente — com processos claros, equipe alinhada e estratégia de crescimento real.</p>
+        <p class="hero-desc">O Método PREVISA ajuda donos de clínicas de estética, biomédicos, dentistas estetas e fisioterapeutas a construírem um faturamento previsível e crescente — com processos claros, equipe alinhada e estratégia de crescimento real.</p>
         <div class="hero-btns">
           <a href="https://bit.ly/4mZgveS" class="btn-primary"><span>→ Solicitar Diagnóstico</span></a>
           <a href="https://bit.ly/4mZgveS" class="btn-outline">Falar no WhatsApp</a>
@@ -560,6 +575,42 @@ nav{padding:14px 0}
   </div>
 </section>
 
+<!-- CLIENTS STRIP -->
+<section class="clients">
+  <div class="clients-label">Clínicas &amp; marcas que já cresceram com o PREVISA</div>
+  <div class="clients-track-wrap">
+    <div class="clients-track">
+      <div class="client-logo"><span class="client-logo-name">Vittale</span><span class="client-logo-sub">Estética de Resultado</span></div>
+      <div class="client-logo"><span class="client-logo-name">Laserfast</span><span class="client-logo-sub">Depilação</span></div>
+      <div class="client-logo"><span class="client-logo-name">Belleviva</span><span class="client-logo-sub">Dermatologia &amp; Estética</span></div>
+      <div class="client-logo"><span class="client-logo-name">Body Laser</span><span class="client-logo-sub">Depilação a Laser</span></div>
+      <div class="client-logo"><span class="client-logo-name">Autentika</span><span class="client-logo-sub">Estética Clinic</span></div>
+      <div class="client-logo"><span class="client-logo-name">Octans</span><span class="client-logo-sub">Estética</span></div>
+      <div class="client-logo"><span class="client-logo-name">Athenas</span><span class="client-logo-sub">Terceirização de Cosméticos</span></div>
+      <div class="client-logo"><span class="client-logo-name">Pró Estética</span><span class="client-logo-sub">Desperte o Seu Poder</span></div>
+      <div class="client-logo"><span class="client-logo-name">Siluets</span><span class="client-logo-sub">Estética</span></div>
+      <div class="client-logo"><span class="client-logo-name">GiO</span><span class="client-logo-sub">Estética Avançada</span></div>
+      <div class="client-logo"><span class="client-logo-name">Vialaser</span><span class="client-logo-sub">Depilação</span></div>
+      <div class="client-logo"><span class="client-logo-name">Onodera</span><span class="client-logo-sub">Estética</span></div>
+      <div class="client-logo"><span class="client-logo-name">Além do Olhar</span><span class="client-logo-sub">by Ana Hickmann</span></div>
+      <!-- duplicado para loop contínuo -->
+      <div class="client-logo"><span class="client-logo-name">Vittale</span><span class="client-logo-sub">Estética de Resultado</span></div>
+      <div class="client-logo"><span class="client-logo-name">Laserfast</span><span class="client-logo-sub">Depilação</span></div>
+      <div class="client-logo"><span class="client-logo-name">Belleviva</span><span class="client-logo-sub">Dermatologia &amp; Estética</span></div>
+      <div class="client-logo"><span class="client-logo-name">Body Laser</span><span class="client-logo-sub">Depilação a Laser</span></div>
+      <div class="client-logo"><span class="client-logo-name">Autentika</span><span class="client-logo-sub">Estética Clinic</span></div>
+      <div class="client-logo"><span class="client-logo-name">Octans</span><span class="client-logo-sub">Estética</span></div>
+      <div class="client-logo"><span class="client-logo-name">Athenas</span><span class="client-logo-sub">Terceirização de Cosméticos</span></div>
+      <div class="client-logo"><span class="client-logo-name">Pró Estética</span><span class="client-logo-sub">Desperte o Seu Poder</span></div>
+      <div class="client-logo"><span class="client-logo-name">Siluets</span><span class="client-logo-sub">Estética</span></div>
+      <div class="client-logo"><span class="client-logo-name">GiO</span><span class="client-logo-sub">Estética Avançada</span></div>
+      <div class="client-logo"><span class="client-logo-name">Vialaser</span><span class="client-logo-sub">Depilação</span></div>
+      <div class="client-logo"><span class="client-logo-name">Onodera</span><span class="client-logo-sub">Estética</span></div>
+      <div class="client-logo"><span class="client-logo-name">Além do Olhar</span><span class="client-logo-sub">by Ana Hickmann</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT / PRISCILLA -->
 <section class="about" id="priscilla">
   <div class="container">
@@ -573,32 +624,32 @@ nav{padding:14px 0}
           </div>
         </div>
         <div class="about-float-badge">
-          <div class="afb-num">300<span style="font-size:18px;color:var(--gold)">+</span></div>
-          <div class="afb-label">Clínicas transformadas</div>
+          <div class="afb-num">20<span style="font-size:18px;color:var(--gold)">+</span></div>
+          <div class="afb-label">Anos de experiência</div>
         </div>
       </div>
       <div class="about-text reveal-right">
         <div class="sec-label">Sobre Priscilla Klein</div>
         <h2>A especialista que entende a <em>realidade</em> da sua clínica</h2>
         <div class="gold-line"></div>
-        <p>Priscilla Klein não chegou ao PREVISA pela teoria. Sua trajetória foi construída dentro das grandes operações de estética do Brasil — onde aprendeu, na prática, o que realmente funciona para crescer com consistência.</p>
-        <p>Com visão comercial, financeira e operacional, ela desenvolveu um método que respeita a realidade de cada clínica: seus recursos, seu momento e seus desafios únicos.</p>
+        <p>São mais de 20 anos construindo resultados dentro das maiores operações de estética do Brasil — de gerente na Onodera a Diretora Nacional de Operações na Siluets, passando por Vialaser, Laser Fast, Bodylaser e Pró Estética.</p>
+        <p>Na Pró Estética, liderou a expansão de <strong style="color:var(--gold2)">2 para 15 unidades</strong> e o crescimento de faturamento de <strong style="color:var(--gold2)">R$ 150 mil para R$ 3,5 milhões</strong>. Hoje é COO na Athenas Cosméticos e Head de Negócios na SOS Consulting — trazendo toda essa vivência para dentro do PREVISA.</p>
         <div class="about-qualities">
           <div class="quality-item">
-            <div class="qi-title">Visão Estratégica</div>
-            <div class="qi-text">Experiência em grandes operações com foco em crescimento sustentável</div>
+            <div class="qi-title">20+ Anos no Setor</div>
+            <div class="qi-text">De gerente operacional a Diretora Nacional, construiu cada pilar do método na prática</div>
           </div>
           <div class="quality-item">
-            <div class="qi-title">Acompanhamento Próximo</div>
-            <div class="qi-text">Suporte personalizado adaptado à realidade de cada clínica</div>
+            <div class="qi-title">Expansão Comprovada</div>
+            <div class="qi-text">Crescimento de R$150k → R$3,5mm e de 2 → 15 unidades na Pró Estética</div>
           </div>
           <div class="quality-item">
-            <div class="qi-title">Método Aplicado</div>
-            <div class="qi-text">Implementação prática com resultados mensuráveis desde o primeiro mês</div>
+            <div class="qi-title">Formação Completa</div>
+            <div class="qi-text">MBA USP/ESALQ · MBA Consultoria Empresarial · Mestrado em Coaching · Biomedicina</div>
           </div>
           <div class="quality-item">
-            <div class="qi-title">Visão Comercial</div>
-            <div class="qi-text">Combinação única de marketing inteligente com gestão eficiente</div>
+            <div class="qi-title">Consultora Ativa</div>
+            <div class="qi-text">Atende redes e clínicas através da SOS Consulting há mais de 10 anos</div>
           </div>
         </div>
       </div>
@@ -755,7 +806,7 @@ nav{padding:14px 0}
       </div>
       <div class="who-card">
         <div class="who-num">03</div>
-        <div class="who-t">Dentista da Estética</div>
+        <div class="who-t">Dentista Esteta</div>
         <div class="who-d">Que deseja construir um comercial previsível e deixar de depender apenas de indicações para crescer</div>
         <div class="who-line"></div>
       </div>
