@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+&lt;!DOCTYPE html&gt;
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -126,6 +126,19 @@ nav.scrolled{background:rgba(8,8,8,0.96);backdrop-filter:blur(20px);padding:16px
 .hero-photo-bottom{position:absolute;bottom:0;left:0;right:0;height:260px;background:linear-gradient(to top,var(--piano) 0%,rgba(13,13,13,0.7) 40%,transparent 100%)}
 .hero-name-card{position:absolute;bottom:48px;left:40px;right:40px}
 .hero-name-card-inner{background:rgba(13,13,13,0.85);border:1px solid rgba(201,168,76,0.15);backdrop-filter:blur(12px);padding:24px 28px;display:flex;align-items:center;justify-content:space-between}
+.hero-video-play{position:absolute;top:44%;left:50%;transform:translate(-50%,-50%);width:84px;height:84px;border-radius:50%;background:rgba(13,13,13,0.55);border:1px solid rgba(201,168,76,0.4);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.25s;z-index:2}
+.hero-video-play:hover{background:rgba(201,168,76,0.22);transform:translate(-50%,-50%) scale(1.08)}
+.hero-video-play svg{width:24px;height:24px;fill:var(--gold2);margin-left:4px}
+.hero-video-label{position:absolute;top:calc(44% + 58px);left:50%;transform:translateX(-50%);font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold2);white-space:nowrap;z-index:2}
+
+/* ─── VIDEO MODAL ─── */
+.video-modal{position:fixed;inset:0;background:rgba(8,8,8,0.92);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
+.video-modal.open{display:flex}
+.video-modal-box{position:relative;width:100%;max-width:860px;aspect-ratio:16/9;background:var(--piano);border:1px solid rgba(201,168,76,0.2)}
+.video-modal-close{position:absolute;top:-40px;right:0;background:none;border:none;color:var(--white);font-size:28px;cursor:pointer;line-height:1}
+.video-modal-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;text-align:center;padding:24px}
+.video-modal-empty span{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold2)}
+.video-modal-empty p{font-size:13px;font-weight:300;color:var(--silver);max-width:360px;line-height:1.7}
 .hnc-left h3{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--white);margin-bottom:4px}
 .hnc-left p{font-size:11px;font-weight:300;letter-spacing:0.16em;color:var(--gold2);text-transform:uppercase}
 .hnc-right{text-align:right}
@@ -247,6 +260,18 @@ nav.scrolled{background:rgba(8,8,8,0.96);backdrop-filter:blur(20px);padding:16px
 .learn-body strong{display:block;font-size:15px;font-weight:500;color:var(--white);margin-bottom:6px;letter-spacing:0.02em}
 .learn-body p{font-size:13px;font-weight:300;color:var(--silver);line-height:1.65}
 
+/* ─── BÔNUS ─── */
+.bonus{padding:140px 0;background:var(--piano)}
+.bonus-header{text-align:center;max-width:640px;margin:0 auto 64px}
+.bonus-header h2{font-family:var(--font-display);font-size:clamp(30px,3vw,48px);font-weight:600;color:var(--white);line-height:1.15}
+.bonus-header h2 em{color:var(--rose2);font-style:italic}
+.bonus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(245,245,240,0.04)}
+.bonus-item{background:var(--piano);padding:36px 32px;transition:background 0.3s;border-top:2px solid transparent}
+.bonus-item:hover{background:var(--graphite);border-top-color:var(--rose)}
+.bonus-n{font-family:var(--font-display);font-size:32px;font-weight:700;color:var(--rose2);opacity:0.35;line-height:1;margin-bottom:16px}
+.bonus-body strong{display:block;font-size:15px;font-weight:500;color:var(--white);margin-bottom:8px;letter-spacing:0.02em}
+.bonus-body p{font-size:13px;font-weight:300;color:var(--silver);line-height:1.65}
+
 /* ─── TESTIMONIALS ─── */
 .testi{padding:140px 0;background:var(--piano);position:relative;overflow:hidden}
 .testi-bg{position:absolute;bottom:-100px;right:-100px;width:500px;height:500px;border-radius:50%;border:1px solid rgba(201,168,76,0.04);pointer-events:none}
@@ -288,6 +313,15 @@ nav.scrolled{background:rgba(8,8,8,0.96);backdrop-filter:blur(20px);padding:16px
 .faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
 .faq-a.open{max-height:300px}
 .faq-a p{padding:0 28px 24px;font-size:13px;font-weight:300;color:var(--silver);line-height:1.8}
+
+/* ─── GARANTIA ─── */
+.guarantee{padding:120px 0;background:var(--charcoal);text-align:center}
+.guarantee-inner{max-width:640px;margin:0 auto}
+.guarantee-badge{width:64px;height:64px;margin:0 auto 28px;border-radius:50%;background:var(--gold-dim);border:1px solid rgba(201,168,76,0.25);display:flex;align-items:center;justify-content:center}
+.guarantee-badge svg{width:28px;height:28px;fill:var(--gold2)}
+.guarantee h2{font-family:var(--font-display);font-size:clamp(28px,3vw,44px);font-weight:600;color:var(--white);line-height:1.15;margin-bottom:20px}
+.guarantee h2 em{color:var(--gold2);font-style:italic}
+.guarantee p{font-size:14px;font-weight:300;color:var(--silver);line-height:1.8}
 
 /* ─── CTA FINAL ─── */
 .cta-final{padding:160px 0;background:var(--piano);text-align:center;position:relative;overflow:hidden}
@@ -367,12 +401,18 @@ nav{padding:16px 0}
 .learn-header{grid-template-columns:1fr;gap:20px}
 .learn-grid{grid-template-columns:1fr}
 
+/* Bônus */
+.bonus-grid{grid-template-columns:1fr}
+
 /* Depoimentos */
 .testi-grid{grid-template-columns:1fr}
 .results-strip{grid-template-columns:1fr 1fr}
 
 /* FAQ */
 .faq-inner{grid-template-columns:1fr;gap:32px}
+
+/* Garantia */
+.guarantee{padding:80px 0}
 
 /* CTA */
 .cta-trust{gap:20px}
@@ -425,6 +465,11 @@ nav{padding:16px 0}
 .learn-grid{grid-template-columns:1fr}
 .learn-item{padding:24px 20px}
 
+/* Bônus */
+.bonus{padding:72px 0}
+.bonus-header{margin-bottom:40px}
+.bonus-item{padding:28px 20px}
+
 /* Depoimentos */
 .testi{padding:72px 0}
 .results-strip{grid-template-columns:1fr 1fr;padding:32px 20px;gap:24px;border:none}
@@ -434,6 +479,9 @@ nav{padding:16px 0}
 /* FAQ */
 .faq{padding:72px 0}
 .faq-left{text-align:left}
+
+/* Garantia */
+.guarantee{padding:64px 0}
 
 /* CTA */
 .cta-final{padding:80px 0}
@@ -549,7 +597,7 @@ nav{padding:14px 0}
         <h1>Sua clínica merece<br>crescer com<br><em>previsibilidade.</em></h1>
         <div class="hero-tagline">Estrutura que transforma. Método que escala.</div>
         <div class="gold-line"></div>
-        <p class="hero-desc">O Método PREVISA ajuda donos de clínicas de estética, biomédicos, dentistas e fisioterapeutas a construírem um faturamento previsível e crescente — com processos claros, equipe alinhada e estratégia de crescimento real.</p>
+        <p class="hero-desc">O Método PREVISA ajuda donos de clínicas de estética, biomédicos, dentistas e fisioterapeutas a construírem um faturamento previsível e crescente, com as primeiras melhorias mensuráveis em até 60 dias — processos claros, equipe alinhada e estratégia de crescimento real.</p>
         <div class="hero-btns">
           <a href="https://bit.ly/4mZgveS" class="btn-primary"><span>→ Solicitar Diagnóstico</span></a>
           <a href="https://bit.ly/4mZgveS" class="btn-outline">Falar no WhatsApp</a>
@@ -574,11 +622,14 @@ nav{padding:14px 0}
 
       <!-- PHOTO COLUMN -->
       <div class="hero-right">
-        <div class="hero-photo-wrap">
+        <!-- REVISAR COM CLIENTE: substituir o data-video-src pelo link real do vídeo de vendas (recomendação de alta prioridade do diagnóstico Analisa/Hotmart) -->
+        <div class="hero-photo-wrap" style="cursor:pointer" onclick="openVideoModal('[A PREENCHER]')" role="button" aria-label="Assistir vídeo de apresentação de Priscilla Klein">
           <div class="hero-photo-bg"></div>
           <img src="pri_clinica.png" alt="Priscilla Klein" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 15%;display:block">
           <div class="hero-photo-overlay"></div>
           <div class="hero-photo-bottom"></div>
+          <div class="hero-video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <div class="hero-video-label">Assistir vídeo</div>
           <div class="hero-name-card">
             <div class="hero-name-card-inner">
               <div class="hnc-left">
@@ -889,6 +940,30 @@ nav{padding:14px 0}
   </div>
 </section>
 
+<!-- BÔNUS — REVISAR COM CLIENTE: confirmar nomes, descrições e se de fato serão entregues antes de publicar (rascunho gerado a partir do diagnóstico Analisa/Hotmart, recomendação de prioridade média) -->
+<section class="bonus" id="bonus">
+  <div class="container">
+    <div class="bonus-header reveal">
+      <div class="sec-label sec-label-rose" style="justify-content:center">Bônus [A PREENCHER]</div>
+      <h2>Ao solicitar seu diagnóstico, você também <em>recebe.</em></h2>
+    </div>
+    <div class="bonus-grid reveal">
+      <div class="bonus-item">
+        <div class="bonus-n">01</div>
+        <div class="bonus-body"><strong>[A PREENCHER — nome do bônus 1]</strong><p>[A PREENCHER — descrição do bônus 1]</p></div>
+      </div>
+      <div class="bonus-item">
+        <div class="bonus-n">02</div>
+        <div class="bonus-body"><strong>[A PREENCHER — nome do bônus 2]</strong><p>[A PREENCHER — descrição do bônus 2]</p></div>
+      </div>
+      <div class="bonus-item">
+        <div class="bonus-n">03</div>
+        <div class="bonus-body"><strong>[A PREENCHER — nome do bônus 3]</strong><p>[A PREENCHER — descrição do bônus 3]</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- TESTIMONIALS -->
 <section class="testi">
   <div class="testi-bg"></div>
@@ -999,6 +1074,17 @@ nav{padding:14px 0}
   </div>
 </section>
 
+<!-- GARANTIA — REVISAR COM CLIENTE: confirmar prazo e condição real da garantia antes de publicar (rascunho gerado a partir do diagnóstico Analisa/Hotmart, recomendação de alta prioridade) -->
+<section class="guarantee" id="garantia">
+  <div class="container">
+    <div class="guarantee-inner reveal">
+      <div class="guarantee-badge"><svg viewBox="0 0 24 24"><path d="M12 2 3 6v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V6l-9-4z"/></svg></div>
+      <div class="sec-label" style="justify-content:center">Garantia [A PREENCHER]</div>
+      <h2>Você decide sem <em>risco.</em></h2>
+      <p>[A PREENCHER — texto da política de garantia/reembolso do Método PREVISA: prazo, condição e como solicitar. Validar com a Priscilla Klein antes de publicar.]</p>
+    </div>
+  </div>
+</section>
 
 <!-- FORMULÁRIO DE DIAGNÓSTICO -->
 <section class="form-section" id="formulario">
@@ -1185,6 +1271,18 @@ nav{padding:14px 0}
   WhatsApp
 </a>
 
+<!-- VIDEO MODAL — REVISAR COM CLIENTE: inserir o vídeo de vendas real (recomendação de alta prioridade do diagnóstico Analisa/Hotmart) -->
+<div class="video-modal" id="video-modal" onclick="if(event.target===this)closeVideoModal()">
+  <div class="video-modal-box">
+    <button class="video-modal-close" onclick="closeVideoModal()" aria-label="Fechar vídeo">&times;</button>
+    <div class="video-modal-empty" id="video-modal-empty">
+      <span>Vídeo em produção</span>
+      <p>Este espaço foi reservado para o vídeo de apresentação da Priscilla Klein. Assim que o vídeo estiver pronto, substitua o placeholder <code>[A PREENCHER]</code> pelo link real (YouTube, Vimeo ou arquivo MP4).</p>
+    </div>
+    <video id="video-modal-player" controls style="display:none;width:100%;height:100%"></video>
+  </div>
+</div>
+
 <script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
@@ -1202,6 +1300,30 @@ function toggleFaq(btn) {
     q.nextElementSibling.classList.remove('open');
   });
   if(!open){ btn.classList.add('open'); a.classList.add('open'); }
+}
+
+function openVideoModal(src) {
+  const modal = document.getElementById('video-modal');
+  const player = document.getElementById('video-modal-player');
+  const empty = document.getElementById('video-modal-empty');
+  if (src && src !== '[A PREENCHER]') {
+    player.src = src;
+    player.style.display = 'block';
+    empty.style.display = 'none';
+    player.play().catch(() => {});
+  } else {
+    player.style.display = 'none';
+    empty.style.display = 'flex';
+  }
+  modal.classList.add('open');
+}
+function closeVideoModal() {
+  const modal = document.getElementById('video-modal');
+  const player = document.getElementById('video-modal-player');
+  player.pause();
+  player.removeAttribute('src');
+  player.load();
+  modal.classList.remove('open');
 }
 
 // ── FORMULÁRIO ─────────────────────────────────────────────────
