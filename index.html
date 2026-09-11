@@ -63,12 +63,50 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .gold-line{width:60px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);margin:28px 0}
 
 /* FADE ANIMATIONS */
-.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.9s ease,transform 0.9s ease}
+:root{--rv-ease:cubic-bezier(0.25,0.46,0.45,0.94);--rv-dist:40px;--rv-dur:0.7s}
+.reveal{opacity:0;transform:translateY(var(--rv-dist));transition:opacity var(--rv-dur) var(--rv-ease),transform var(--rv-dur) var(--rv-ease);will-change:opacity,transform}
 .reveal.visible{opacity:1;transform:none}
-.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity 0.9s ease,transform 0.9s ease}
+.reveal-left{opacity:0;transform:translateX(calc(-1 * var(--rv-dist)));transition:opacity var(--rv-dur) var(--rv-ease),transform var(--rv-dur) var(--rv-ease);will-change:opacity,transform}
 .reveal-left.visible{opacity:1;transform:none}
-.reveal-right{opacity:0;transform:translateX(40px);transition:opacity 0.9s ease,transform 0.9s ease}
+.reveal-right{opacity:0;transform:translateX(var(--rv-dist));transition:opacity var(--rv-dur) var(--rv-ease),transform var(--rv-dur) var(--rv-ease);will-change:opacity,transform}
 .reveal-right.visible{opacity:1;transform:none}
+
+/* delay / duration utilities */
+.rv-d0{transition-delay:0ms}
+.rv-d150{transition-delay:150ms}
+.rv-d200{transition-delay:200ms}
+.rv-d300{transition-delay:300ms}
+.rv-d350{transition-delay:350ms}
+.rv-d450{transition-delay:450ms}
+.rv-d600{transition-delay:600ms}
+.rv-dur800{transition-duration:0.8s}
+
+/* staggered grid reveal: container fades children individually */
+.reveal-stagger,.reveal-stagger-left{opacity:1;transform:none}
+.reveal-stagger > *,.reveal-stagger-left > *{opacity:0;transition:opacity var(--rv-dur) var(--rv-ease),transform var(--rv-dur) var(--rv-ease);will-change:opacity,transform}
+.reveal-stagger > *{transform:translateY(var(--rv-dist))}
+.reveal-stagger-left > *{transform:translateX(calc(-1 * var(--rv-dist)))}
+.reveal-stagger.visible > *,.reveal-stagger-left.visible > *{opacity:1;transform:none}
+.reveal-stagger > *:nth-child(1),.reveal-stagger-left > *:nth-child(1){transition-delay:0ms}
+.reveal-stagger > *:nth-child(2),.reveal-stagger-left > *:nth-child(2){transition-delay:150ms}
+.reveal-stagger > *:nth-child(3),.reveal-stagger-left > *:nth-child(3){transition-delay:300ms}
+.reveal-stagger > *:nth-child(4),.reveal-stagger-left > *:nth-child(4){transition-delay:450ms}
+.reveal-stagger > *:nth-child(5),.reveal-stagger-left > *:nth-child(5){transition-delay:600ms}
+.reveal-stagger > *:nth-child(6),.reveal-stagger-left > *:nth-child(6){transition-delay:750ms}
+.reveal-stagger > *:nth-child(7),.reveal-stagger-left > *:nth-child(7){transition-delay:900ms}
+.reveal-stagger > *:nth-child(8),.reveal-stagger-left > *:nth-child(8){transition-delay:1050ms}
+
+/* progressive blur (fixed bottom bar) */
+.progressive-blur{position:fixed;bottom:0;left:0;width:100%;height:200px;z-index:150;pointer-events:none}
+.progressive-blur > div{position:absolute;inset:0}
+.pb-1{backdrop-filter:blur(0.25px);-webkit-backdrop-filter:blur(0.25px);mask-image:linear-gradient(to bottom,transparent 0%,black 12.5%,black 25%,transparent 37.5%);-webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 12.5%,black 25%,transparent 37.5%)}
+.pb-2{backdrop-filter:blur(0.5px);-webkit-backdrop-filter:blur(0.5px);mask-image:linear-gradient(to bottom,transparent 12.5%,black 25%,black 37.5%,transparent 50%);-webkit-mask-image:linear-gradient(to bottom,transparent 12.5%,black 25%,black 37.5%,transparent 50%)}
+.pb-3{backdrop-filter:blur(1px);-webkit-backdrop-filter:blur(1px);mask-image:linear-gradient(to bottom,transparent 25%,black 37.5%,black 50%,transparent 62.5%);-webkit-mask-image:linear-gradient(to bottom,transparent 25%,black 37.5%,black 50%,transparent 62.5%)}
+.pb-4{backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);mask-image:linear-gradient(to bottom,transparent 37.5%,black 50%,black 62.5%,transparent 75%);-webkit-mask-image:linear-gradient(to bottom,transparent 37.5%,black 50%,black 62.5%,transparent 75%)}
+.pb-5{backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);mask-image:linear-gradient(to bottom,transparent 50%,black 62.5%,black 75%,transparent 87.5%);-webkit-mask-image:linear-gradient(to bottom,transparent 50%,black 62.5%,black 75%,transparent 87.5%)}
+.pb-6{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);mask-image:linear-gradient(to bottom,transparent 62.5%,black 75%,black 87.5%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 62.5%,black 75%,black 87.5%,transparent 100%)}
+.pb-7{backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);mask-image:linear-gradient(to bottom,transparent 75%,black 87.5%,black 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 75%,black 87.5%,black 100%)}
+.pb-8{backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);mask-image:linear-gradient(to bottom,transparent 87.5%,black 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 87.5%,black 100%)}
 
 /* ─── NAV ─── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 0;transition:all 0.5s}
@@ -541,20 +579,20 @@ nav{padding:14px 0}
   <div class="hero-bg-glow"></div>
   <div class="container" style="width:100%;max-width:100%;padding:0">
     <div class="hero-content">
-      <div class="hero-left reveal-left" style="padding-left:max(48px,calc((100vw - 1200px)/2 + 48px))">
-        <div class="hero-eyebrow">
+      <div class="hero-left" style="padding-left:max(48px,calc((100vw - 1200px)/2 + 48px))">
+        <div class="hero-eyebrow reveal-left rv-d0">
           <div class="hero-eyebrow-line"></div>
           <div class="hero-eyebrow-text">Método PREVISA — Gestão para Clínicas Premium</div>
         </div>
-        <h1>Sua clínica merece<br>crescer com<br><em>previsibilidade.</em></h1>
-        <div class="hero-tagline">Estrutura que transforma. Método que escala.</div>
-        <div class="gold-line"></div>
-        <p class="hero-desc">O Método PREVISA ajuda donos de clínicas de estética, biomédicos, dentistas e fisioterapeutas a construírem um faturamento previsível e crescente — com processos claros, equipe alinhada e estratégia de crescimento real.</p>
-        <div class="hero-btns">
+        <h1 class="reveal-left rv-d150">Sua clínica merece<br>crescer com<br><em>previsibilidade.</em></h1>
+        <div class="hero-tagline reveal-left rv-d300">Estrutura que transforma. Método que escala.</div>
+        <div class="gold-line reveal-left rv-d300"></div>
+        <p class="hero-desc reveal-left rv-d300">O Método PREVISA ajuda donos de clínicas de estética, biomédicos, dentistas e fisioterapeutas a construírem um faturamento previsível e crescente — com processos claros, equipe alinhada e estratégia de crescimento real.</p>
+        <div class="hero-btns reveal-left rv-d450">
           <a href="https://bit.ly/4mZgveS" class="btn-primary"><span>→ Solicitar Diagnóstico</span></a>
           <a href="https://bit.ly/4mZgveS" class="btn-outline">Falar no WhatsApp</a>
         </div>
-        <div class="hero-social-proof">
+        <div class="hero-social-proof reveal rv-d600">
           <div class="proof-item">
             <div class="proof-num">300<span>+</span></div>
             <div class="proof-label">Clínicas atendidas</div>
@@ -574,7 +612,7 @@ nav{padding:14px 0}
 
       <!-- PHOTO COLUMN -->
       <div class="hero-right">
-        <div class="hero-photo-wrap">
+        <div class="hero-photo-wrap reveal-right rv-d300 rv-dur800">
           <div class="hero-photo-bg"></div>
           <img src="pri_clinica.png" alt="Priscilla Klein" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 15%;display:block">
           <div class="hero-photo-overlay"></div>
@@ -600,7 +638,7 @@ nav{padding:14px 0}
 <section class="about" id="priscilla">
   <div class="container">
     <div class="about-inner">
-      <div class="about-photo-col reveal-left">
+      <div class="about-photo-col reveal-left rv-d200 rv-dur800">
         <div class="about-photo-frame">
           <img src="pri_clinica.png" alt="Priscilla Klein — Especialista PREVISA" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block">
           <div class="about-photo-tag">
@@ -651,7 +689,7 @@ nav{padding:14px 0}
       <h2>Você reconhece<br>alguma dessas situações?</h2>
       <p>Antes do PREVISA, a maioria das clínicas que atendemos vivia exatamente assim</p>
     </div>
-    <div class="pain-grid reveal">
+    <div class="pain-grid reveal-stagger">
       <div class="pain-item">
         <div class="pain-ico"><svg viewBox="0 0 24 24"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg></div>
         <div class="pain-t">Faturamento imprevisível</div>
@@ -711,7 +749,7 @@ nav{padding:14px 0}
         <p>O PREVISA não é um curso. É um método estruturado de implementação, aplicado diretamente na realidade da sua clínica, com acompanhamento próximo e resultados mensuráveis desde o primeiro mês.</p>
       </div>
     </div>
-    <div class="pillars reveal">
+    <div class="pillars reveal-stagger-left">
       <div class="pillar p1">
         <div class="pillar-top-line"></div>
         <div class="pil-num">01</div>
@@ -776,7 +814,7 @@ nav{padding:14px 0}
         <p>Profissionais da estética que desejam transformar sua prática em um negócio lucrativo, previsível e de alto padrão — com gestão profissional e crescimento consistente.</p>
       </div>
     </div>
-    <div class="who-grid reveal">
+    <div class="who-grid reveal-stagger">
       <div class="who-card">
         <div class="who-num">01</div>
         <div class="who-t">Dono de Clínica de Estética</div>
@@ -876,7 +914,7 @@ nav{padding:14px 0}
         <p style="font-size:15px;font-weight:300;color:var(--silver);line-height:1.8">Não é teoria. É implementação prática com suporte estratégico real, aplicado diretamente na realidade da sua operação.</p>
       </div>
     </div>
-    <div class="learn-grid reveal">
+    <div class="learn-grid reveal-stagger">
       <div class="learn-item"><div class="learn-n">01</div><div class="learn-body"><strong>Comercial previsível</strong><p>Estruturar um processo de vendas que gera faturamento consistente todos os meses</p></div></div>
       <div class="learn-item"><div class="learn-n">02</div><div class="learn-body"><strong>Aumentar recorrência</strong><p>Fazer pacientes voltarem mais vezes e permanecerem fiéis à sua clínica</p></div></div>
       <div class="learn-item"><div class="learn-n">03</div><div class="learn-body"><strong>Análise de resultados</strong><p>Ler indicadores corretamente e tomar decisões estratégicas baseadas em dados</p></div></div>
@@ -897,7 +935,7 @@ nav{padding:14px 0}
       <div class="sec-label" style="justify-content:center">Resultados Reais</div>
       <h2>Clínicas que <em style="color:var(--gold2);font-style:italic">transformaram</em> sua operação</h2>
     </div>
-    <div class="testi-grid reveal">
+    <div class="testi-grid reveal-stagger">
       <div class="tc">
         <span class="tc-quote-mark">"</span>
         <div class="tc-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
@@ -1029,7 +1067,7 @@ nav{padding:14px 0}
         </div>
       </div>
 
-      <div class="form-card reveal-right">
+      <div class="form-card reveal-right rv-d350 rv-dur800">
         <div id="form-content">
           <div class="form-title">Solicitar Diagnóstico</div>
           <div class="form-subtitle">Método PREVISA · Priscilla Klein</div>
@@ -1117,7 +1155,7 @@ nav{padding:14px 0}
   <div class="cta-bg-ring"></div>
   <div class="cta-bg-ring2"></div>
   <div class="container">
-    <div class="reveal">
+    <div class="reveal-stagger">
       <div class="sec-label" style="justify-content:center">Próximo Passo</div>
       <h2>Sua clínica pode crescer<br><em>com previsibilidade.</em></h2>
       <div class="gold-line" style="margin:28px auto;width:60px"></div>
@@ -1185,14 +1223,26 @@ nav{padding:14px 0}
   WhatsApp
 </a>
 
+<!-- PROGRESSIVE BLUR -->
+<div class="progressive-blur" aria-hidden="true">
+  <div class="pb-1"></div>
+  <div class="pb-2"></div>
+  <div class="pb-3"></div>
+  <div class="pb-4"></div>
+  <div class="pb-5"></div>
+  <div class="pb-6"></div>
+  <div class="pb-7"></div>
+  <div class="pb-8"></div>
+</div>
+
 <script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
 
 const obs = new IntersectionObserver(els => {
   els.forEach(el => { if(el.isIntersecting) el.target.classList.add('visible') });
-}, {threshold: 0.1, rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => obs.observe(el));
+}, {threshold: 0.15, rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-stagger,.reveal-stagger-left').forEach(el => obs.observe(el));
 
 function toggleFaq(btn) {
   const a = btn.nextElementSibling;
