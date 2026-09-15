@@ -541,6 +541,23 @@ nav{padding:14px 0}
 @media(max-width:768px){.form-card{padding:28px 20px}.form-row{grid-template-columns:1fr}}
 
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1363861512396085');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1363861512396085&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -1284,6 +1301,13 @@ document.getElementById('lead-form').addEventListener('submit', async function(e
   btn.disabled = true;
   btn.textContent = 'Enviando...';
 
+  // WhatsApp com os dados do formulário pré-preenchidos na mensagem —
+  // garante que o lead chega na equipe mesmo se o webhook abaixo falhar.
+  const waMsg = `Olá! Vim da Landing Page do Método PREVISA e quero solicitar meu diagnóstico gratuito.\n\n`
+    + `Nome: ${campos.nome}\nClínica: ${campos.clinica}\nCidade: ${campos.cidade}/${campos.estado}\n`
+    + `Faturamento: ${campos.faturamento || 'não informado'}\nMaior desafio: ${campos.desafio || 'não informado'}`;
+  const waLink = 'https://wa.me/5511954451361?text=' + encodeURIComponent(waMsg);
+
   try {
     // SUBSTITUA a URL abaixo pela URL do seu Webhook N8N
     const WEBHOOK_URL = 'https://SEU-N8N.com/webhook/previsa-leads';
@@ -1297,19 +1321,28 @@ document.getElementById('lead-form').addEventListener('submit', async function(e
     // Mostrar sucesso independente da resposta (N8N pode não retornar 200)
     document.getElementById('form-content').style.display = 'none';
     document.getElementById('form-success').style.display = 'block';
+    if (typeof fbq === 'function') fbq('track', 'Lead');
 
-    // Fallback: abrir WhatsApp se webhook não configurado
+    // Fallback: abrir WhatsApp (com os dados do lead) se webhook não configurado
     if (!resp.ok) {
       setTimeout(() => {
-        window.open('https://bit.ly/4mZgveS', '_blank');
+        window.open(waLink, '_blank');
       }, 2000);
     }
   } catch(err) {
-    // Webhook não configurado ainda — redirecionar para WhatsApp
+    // Webhook não configurado ainda — redirecionar para WhatsApp com os dados do lead
     document.getElementById('form-content').style.display = 'none';
     document.getElementById('form-success').style.display = 'block';
-    setTimeout(() => { window.open('https://bit.ly/4mZgveS', '_blank'); }, 2000);
+    if (typeof fbq === 'function') fbq('track', 'Lead');
+    setTimeout(() => { window.open(waLink, '_blank'); }, 2000);
   }
+});
+
+// ── PIXEL: clique direto nos links de WhatsApp (fora do formulário) ──
+document.querySelectorAll('a[href="https://bit.ly/4mZgveS"]').forEach(function(link) {
+  link.addEventListener('click', function() {
+    if (typeof fbq === 'function') fbq('track', 'Contact');
+  });
 });
 
 // Máscara WhatsApp
