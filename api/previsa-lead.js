@@ -4,6 +4,7 @@ const ALLOWED_HOSTS = new Set([
 ]);
 
 const REQUIRED_FIELDS = ['nome', 'whatsapp', 'email', 'clinica', 'cidade', 'estado'];
+const FORM_WEBHOOK_URL = 'https://n8nopen.openwave.online/webhook/previsa-formulario';
 
 function clean(value, maxLength = 500) {
   return typeof value === 'string' ? value.trim().slice(0, maxLength) : '';
@@ -30,7 +31,6 @@ export default async function handler(request, response) {
 
   const input = request.body && typeof request.body === 'object' ? request.body : {};
 
-  // Campo invisível: bots costumam preenchê-lo; pessoas reais não.
   if (clean(input.website)) {
     return response.status(200).json({ ok: true });
   }
@@ -53,14 +53,8 @@ export default async function handler(request, response) {
     return response.status(400).json({ ok: false, error: 'required_fields_missing' });
   }
 
-  const webhookUrl = process.env.PREVISA_WEBHOOK_URL;
-  if (!webhookUrl) {
-    console.error('PREVISA_WEBHOOK_URL is not configured');
-    return response.status(503).json({ ok: false, error: 'service_not_configured' });
-  }
-
   try {
-    const upstream = await fetch(webhookUrl, {
+    const upstream = await fetch(FORM_WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(lead),
