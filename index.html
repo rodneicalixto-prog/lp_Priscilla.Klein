@@ -109,8 +109,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .pb-8{backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);mask-image:linear-gradient(to bottom,transparent 87.5%,black 100%);-webkit-mask-image:linear-gradient(to bottom,transparent 87.5%,black 100%)}
 
 /* ─── NAV ─── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 0;transition:all 0.5s}
-nav.scrolled{background:rgba(8,8,8,0.96);backdrop-filter:blur(20px);padding:16px 0;border-bottom:1px solid rgba(201,168,76,0.08)}
+#nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 0;transition:all 0.5s}
+#nav.scrolled{background:rgba(8,8,8,0.96);backdrop-filter:blur(20px);padding:16px 0;border-bottom:1px solid rgba(201,168,76,0.08)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;flex-direction:column;line-height:1}
 .nav-logo-main{font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--white);letter-spacing:0.08em}
@@ -371,7 +371,7 @@ footer{background:#050505;padding:56px 0 32px}
 /* ── TABLET (≤1024px) ── */
 @media(max-width:1024px){
 .container{padding:0 28px}
-nav{padding:16px 0}
+#nav{padding:16px 0}
 .nav-links{display:none}
 .nav-cta{font-size:9px;padding:8px 16px}
 
@@ -501,7 +501,7 @@ nav{padding:16px 0}
 .testi-header h2{font-size:28px}
 .cta-final h2{font-size:32px}
 .about-photo-col{max-width:100%}
-nav{padding:14px 0}
+#nav{padding:14px 0}
 .nav-logo-main{font-size:18px}
 }
 
