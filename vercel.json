@@ -1,0 +1,4 @@
+{
+  "buildCommand": "cp index.html pri_clinica.png public/",
+  "outputDirectory": "public"
+}
